@@ -88,7 +88,7 @@ class spReader(Thread):
                     key = msg[2:4]
                     if key is not '\x00\x00':
                         #self.data[key] = (currentTime + msg)
-                        mqttc.publish('/test', (currentTime + msg))
+                        mqttc.publish('/sensors', (currentTime + msg))
                         #mqttc.loop(2)
                 else:
                     if self.debug:
@@ -107,7 +107,7 @@ if debug:
     print "Handler registred for SIGUSR1"
 
 # start serial port thread
-th = spReader('/dev/tty.usbserial-AJ02W9RV', debug)
+th = spReader('/dev/ttyUSB0', debug)
 th.start()
 
 # start TCP listener
