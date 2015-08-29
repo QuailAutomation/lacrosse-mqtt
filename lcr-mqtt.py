@@ -1,5 +1,5 @@
 __author__ = 'craigh'
-
+# hi
 import serial
 import time
 import sys
@@ -62,7 +62,7 @@ class spReader(Thread):
         if self.debug:
             print 'Sum: ' + str(sumSamples)
             print 'Num samples: ' + str(numSamples)
-        if len(self.last10Readings) < 5:
+        if len(self.last10Readings) < 10:
             if self.debug:
                 print 'SMA is None because # samples is: ' + str(len(self.last10Readings))
             return None
@@ -113,7 +113,7 @@ class spReader(Thread):
 
 
             mqttc = mqtt.Client('python_pub')
-            mqttc.connect('192.168.1.122', 1883,keepalive=1000)
+
 
             time.sleep(2)
 
@@ -138,14 +138,19 @@ class spReader(Thread):
                         print 'Connection alive: ' + str(mqttc._check_keepalive())
                         topic = self.deviceToTopicMap[key]
                         self.submitSample(temp)
+                        print self.last10Readings
                         sma = self.sma()
                         if sma is not None:
                             if self.debug:
                                 print 'Writing to topic: ' + topic
+                            mqttc.connect('192.168.1.122', 1883,keepalive=1000)
                             mqttc.publish(topic, str(sma))
                             if self.debug:
                                 print 'Apparent success writing to mqtt'
-                            self.last10Readings.clear()
+                                for x in xrange(5):
+                                    self.last10Readings.popleft()
+                                    # let's remove 5 oldest readings so we can build deque back to 10
+
                         else:
                             if self.debug:
                                 print 'Did not write sma because is None'
