@@ -1,7 +1,7 @@
 __author__ = 'craigh'
 
 import io
-from logentries import LogentriesHandler
+#from logentries import LogentriesHandler
 import logging
 from twisted.protocols.basic import LineReceiver
 
@@ -16,19 +16,22 @@ from twisted.python import log as twisted_log
 
 
 # read some env variables
-usb_port = os.getenv('jeelink-usb-port', '/dev/ttyUSB0')
+serial_port = os.getenv('jeelink-usb-port', '/dev/ttyUSB0')
 mosquitto_url = os.getenv('mqtt-broker-url', '192.168.1.122')
+# TODO this needs to be converted to some map config file with device id, topic
+mosquitto_topic = os.getenv('mosquitto-topic', 'sensors/basement/winecellar/temperature')
+logentries_key = os.getenv('logentries-key', '9401ac1a-b3ba-45bf-8b48-df0fe1ecd5b0')
+
 
 class THOptions(usage.Options):
     optParameters = [
         ['baudrate', 'b', 57600, 'Serial baudrate'],
-        ['port', 'p', usb_port, 'Serial port to use'],]
-
+        ['port', 'p', serial_port, 'Serial port to use'],]
 
 class ProcessTempSensor(LineReceiver):
     debug = True
     mqttc = mqtt.Client('python_pub')
-    deviceToTopicMap = {'28': "sensors/basement/winecellar/temperature"}
+    deviceToTopicMap = {'28': mosquitto_topic}
 
     last10Readings = deque(maxlen=10)
 
@@ -110,8 +113,7 @@ def SerialInit():
 
 log = logging.getLogger('logentries')
 log.setLevel(logging.INFO)
-# Note if you have set up the logentries handler in Django, the following line is not necessary
-log.addHandler(LogentriesHandler('9401ac1a-b3ba-45bf-8b48-df0fe1ecd5b0'))
+#log.addHandler(LogentriesHandler(logentries_key))
 
 observer = twisted_log.PythonLoggingObserver(loggerName='logentries')
 observer.start()
