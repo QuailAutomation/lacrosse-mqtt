@@ -1,6 +1,6 @@
 __author__ = 'craigh'
 
-import io
+import os
 #from logentries import LogentriesHandler
 import logging
 from twisted.protocols.basic import LineReceiver
