@@ -21,4 +21,4 @@ USER pi
 
 ADD lcr-mqtt.py /home/pi/lcr-mqtt.py
 
-CMD python /home/pi/lcr-mqtt.py
+CMD python /home/pi/lcr-mqtt.py debug
