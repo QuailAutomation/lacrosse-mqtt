@@ -2,7 +2,7 @@ FROM hypriot/rpi-python:2.7.3
 MAINTAINER craig
 
 RUN apt-get update && \
-    apt-get -y install net-tools python-pip && \
+    apt-get -y install vim python-twisted python-pip && \
     apt-get clean
 
 # Install Python requirements
@@ -15,10 +15,12 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Create runtime user
 RUN useradd pi
 RUN mkdir -p /home/pi
-RUN chown -R pi:pi /home/pi
 RUN usermod -a -G dialout pi
 USER pi
 
-ADD lcr-mqtt.py /home/pi/lcr-mqtt.py
+ADD twisted-lcr-mqtt.py /home/pi/twisted-lcr-mqtt.py
 
-CMD python /home/pi/lcr-mqtt.py debug
+
+RUN chown -R pi:pi /home/pi
+
+CMD python /home/pi/twisted-lcr-mqtt.py debug
