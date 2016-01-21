@@ -16,11 +16,13 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN useradd pi
 RUN mkdir -p /home/pi
 RUN usermod -a -G dialout pi
+ADD twisted-lcr-mqtt.py /home/pi/twisted-lcr-mqtt.py
+RUN chown -R pi /home/pi/
 USER pi
 
-ADD twisted-lcr-mqtt.py /home/pi/twisted-lcr-mqtt.py
+#ADD twisted-lcr-mqtt.py /home/pi/twisted-lcr-mqtt.py
 
 
-RUN chown -R pi:pi /home/pi
+#RUN chown -R pi /home/pi/
 
-CMD python /home/pi/twisted-lcr-mqtt.py debug
+CMD ["python","/home/pi/twisted-lcr-mqtt.py"] 
