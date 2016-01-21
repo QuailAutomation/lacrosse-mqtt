@@ -19,7 +19,7 @@ from twisted.python import log as twisted_log
 serial_port = os.getenv('JEELINKUSBPORT', '/dev/ttyUSB0')
 mosquitto_url = os.getenv('MQTTBROKERURL', '192.168.1.122')
 # TODO this needs to be converted to some map config file with device id, topic
-mosquitto_topic = os.getenv('MOSQUITTOTOPIC', 'sensors/basement/winecellar/temperature')
+mosquitto_topic = os.getenv('MOSQUITTOTOPIC', 'sensors/garage-south/temperature')
 logentries_key = os.getenv('logentries-key', '9401ac1a-b3ba-45bf-8b48-df0fe1ecd5b0')
 
 
@@ -31,7 +31,7 @@ class THOptions(usage.Options):
 class ProcessTempSensor(LineReceiver):
     debug = True
     mqttc = mqtt.Client('python_pub')
-    deviceToTopicMap = {'28': mosquitto_topic}
+    deviceToTopicMap = {'80': mosquitto_topic}
 
     last10Readings = deque(maxlen=10)
 
@@ -53,13 +53,13 @@ class ProcessTempSensor(LineReceiver):
         log.debug('submit sample called with: ' + str(sample))
         # check if within 1 degree of sma, if it exists
         mostRecentAvg = self.sma()
-        log.debug('sma: ' + str(mostRecentAvg))
+        log.debug('most recent sma: ' + str(mostRecentAvg))
         if mostRecentAvg is not None:
             if abs(sample - mostRecentAvg) < 1:
                 self.last10Readings.append(sample)
                 log.debug( 'Submitted sample')
         else:
-            if 10.0 <= sample <= 25:
+            if 10.0 <= sample <= 35:
                 self.last10Readings.append(sample)
                 log.debug( 'Submitted sample')
             else:
@@ -69,9 +69,9 @@ class ProcessTempSensor(LineReceiver):
         try:
             msg = line.rstrip()
             log.info(msg)
-            if len(msg) >= 13:
+            if msg.startswith('D:') and len(msg) >= 13:
                 msgElements = msg.split(':')
-                log.debug('Elements: ', msgElements)
+               # log.debug('Elements: ', str(msgElements))
                 key = msgElements[1]
                 log.debug('key: %s' % key)
                 temp = float(msgElements[2])
@@ -92,7 +92,7 @@ class ProcessTempSensor(LineReceiver):
                     #mqttc.loop(2)
                 except KeyError:
                     log.warning('Key not found: ' + key)
-        except ValueError:
+        except (ValueError, IndexError):
             log.error('Unable to parse data %s' % line)
             return
 
@@ -111,8 +111,12 @@ def SerialInit():
     s = SerialPort(ProcessTempSensor(), port, reactor, baudrate=baudrate)
     reactor.run()
 
-log = logging.getLogger('logentries')
-log.setLevel(logging.INFO)
+print 'Starting'
+
+#log = logging.getLogger('logentries')
+#log.setLevel(logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
+log = logging.getLogger()
 #log.addHandler(LogentriesHandler(logentries_key))
 
 observer = twisted_log.PythonLoggingObserver(loggerName='logentries')
