@@ -17,15 +17,6 @@ from collections import deque
 from twisted.python import log as twisted_log
 
 
-# read some env variables
-config_file = os.getenv('SENSORCONFIGFILE', './sensors.json')
-serial_port = os.getenv('JEELINKUSBPORT', '/dev/ttyUSB0')
-mosquitto_url = os.getenv('MQTTBROKERURL', '192.168.1.122')
-# TODO this needs to be converted to some map config file with device id, topic
-mosquitto_topic = os.getenv('MOSQUITTOTOPIC', 'sensors/garage-south/temperature')
-logentries_key = os.getenv('logentries-key', '9401ac1a-b3ba-45bf-8b48-df0fe1ecd5b0')
-
-
 class TempSensor:
     def __init__(self, topic, min, max):
         self.topic = str(topic)
@@ -69,6 +60,31 @@ class TempSensor:
     def remove(self, count):
         for x in range(count):
             self.last10Readings.popleft()
+
+config_file = os.getenv('SENSORCONFIGFILE', './sensors.json')
+with open(config_file) as json_file:
+    config = json.load(json_file)
+
+# read some env variables
+
+serial_port = config['serial-port']
+mosquitto_url = config['mqtt-url']
+logentries_key = config['log-entries-key']
+
+# for each id, let's create a dict with the id, and a temp sensor cloass
+#TempSensor
+deviceToTopicMap = {}
+sensorConfig = config['sensors']
+for key in sensorConfig:
+    topic = sensorConfig[key]['mqtt-topic']
+    print ('Topic: ',topic)
+    min = sensorConfig[key]['valid-range']['min']
+    print ('Min: ', min)
+    deviceToTopicMap[key] = TempSensor(sensorConfig[key]['mqtt-topic'],sensorConfig[key]['valid-range']['min'],sensorConfig[key]['valid-range']['max'])
+
+
+
+
 
 class THOptions(usage.Options):
     optParameters = [
@@ -130,18 +146,6 @@ def SerialInit():
 
 print 'Starting'
 
-with open(config_file) as json_file:
-    sensorConfig = json.load(json_file)
-
-# for each id, let's create a dict with the id, and a temp sensor cloass
-#TempSensor
-deviceToTopicMap = {}
-for key in sensorConfig:
-    topic = sensorConfig[key]['mqtt-topic']
-    print ('Topic: ',topic)
-    min = sensorConfig[key]['valid-range']['min']
-    print ('Min: ', min)
-    deviceToTopicMap[key] = TempSensor(sensorConfig[key]['mqtt-topic'],sensorConfig[key]['valid-range']['min'],sensorConfig[key]['valid-range']['max'])
 
 #log = logging.getLogger('logentries')
 #log.setLevel(logging.INFO)
