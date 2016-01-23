@@ -47,12 +47,12 @@ class TempSensor:
                 self.last10Readings.append(sample)
                 log.debug( 'Submitted sample')
         else:
-            #TODD get these from config map
             if self.min <= sample <= self.max:
                 self.last10Readings.append(sample)
-                log.debug( 'Submitted sample')
+                log.debug('Submitted sample')
             else:
-                log.debug( 'Sample out of range')
+                log.warn('Sample out of range, topic: %s, sample value: %f, min: %f, max: %f'
+                         % (self.topic, sample, self.min, self.max))
 
     def topic(self):
         return self.topic
@@ -70,16 +70,21 @@ with open(config_file) as json_file:
 serial_port = config['serial-port']
 mosquitto_url = config['mqtt-url']
 logentries_key = config['log-entries-key']
+logging_level = config['log-level']
+
+logging.basicConfig(level=logging_level or logging.INFO)
+log = logging.getLogger()
 
 # for each id, let's create a dict with the id, and a temp sensor cloass
 #TempSensor
 deviceToTopicMap = {}
 sensorConfig = config['sensors']
 for key in sensorConfig:
+    log.info("watching for sensor with id: %s" % key)
     topic = sensorConfig[key]['mqtt-topic']
-    print ('Topic: ',topic)
+    log.info('Topic: %s' % topic)
     min = sensorConfig[key]['valid-range']['min']
-    print ('Min: ', min)
+    log.info('Min: %s, Max: %s' % (min,sensorConfig[key]['valid-range']['max']))
     deviceToTopicMap[key] = TempSensor(sensorConfig[key]['mqtt-topic'],sensorConfig[key]['valid-range']['min'],sensorConfig[key]['valid-range']['max'])
 
 
@@ -100,8 +105,9 @@ class ProcessTempSensor(LineReceiver):
     def lineReceived(self, line):
         try:
             msg = line.rstrip()
-            log.info(msg)
+            log.debug(msg)
             if msg.startswith('D:') and len(msg) >= 13:
+                log.info("Processing: %s" % msg)
                 msgElements = msg.split(':')
                 key = msgElements[1]
                 log.debug('key: %s' % key)
@@ -109,13 +115,11 @@ class ProcessTempSensor(LineReceiver):
                 log.debug("temp: '%f'" % temp)
                 try:
                     configInfo = deviceToTopicMap[key]
-                    print("Config info is: %s" %  configInfo)
                     topic = configInfo.topic
-                    print("Topic is :%s"% topic)
                     configInfo.submitSample(temp)
                     sma = configInfo.sma()
                     if sma is not None:
-                        log.debug( 'Writing to topic: ' + topic)
+                        log.info( 'Writing to topic: %s, val: %s' % (topic, str(sma)))
                         self.mqttc.connect(mosquitto_url, 1883, keepalive=1000)
                         self.mqttc.publish(topic, str(sma))
                         # let's remove 5 oldest readings so we can build deque back to 10
@@ -124,7 +128,7 @@ class ProcessTempSensor(LineReceiver):
                         log.debug( 'Did not write sma because is None')
                     #mqttc.loop(2)
                 except KeyError:
-                    log.warning('Key not found: ' + key)
+                    log.info('Key not found: ' + key)
         except (ValueError, IndexError):
             log.error('Unable to parse data %s' % line)
             return
@@ -144,13 +148,12 @@ def SerialInit():
     s = SerialPort(ProcessTempSensor(), port, reactor, baudrate=baudrate)
     reactor.run()
 
-print 'Starting'
+log.info('Starting')
 
 
 #log = logging.getLogger('logentries')
 #log.setLevel(logging.INFO)
-logging.basicConfig(level=logging.DEBUG)
-log = logging.getLogger()
+
 #log.addHandler(LogentriesHandler(logentries_key))
 
 observer = twisted_log.PythonLoggingObserver(loggerName='logentries')
