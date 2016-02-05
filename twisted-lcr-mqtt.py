@@ -1,10 +1,10 @@
 __author__ = 'craigh'
-
+import sys,traceback
 import os
 #from logentries import LogentriesHandler
 import logging
 import json
-
+import socket
 from twisted.protocols.basic import LineReceiver
 
 from twisted.internet import reactor
@@ -125,18 +125,19 @@ class ProcessTempSensor(LineReceiver):
                             self.mqttc.publish(topic, str(sma))
                             # let's remove 5 oldest readings so we can build deque back to 10
                             configInfo.remove(5)
-                        except socket_error as serr:
-                            if serr.errno != errno.ECONNREFUSED:
+                        except socket.error:
+                            #if serr.errno != errno.ECONNREFUSED:
                                 # Not the error we are looking for, re-raise
-                                raise serr
-                            else:
-                                log.warn('Could not connect to mosquitto')
+                            #    raise serr
+                            #else:
+                            log.warn('Could not connect to mosquitto')
                     else:
                         log.debug( 'Did not write sma because is None')
                     #mqttc.loop(2)
                 except KeyError:
                     log.info('Key not found: ' + key)
         except (ValueError, IndexError):
+            traceback.print_exc()
             log.error('Unable to parse data %s' % line)
             return
 
