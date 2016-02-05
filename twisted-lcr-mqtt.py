@@ -120,10 +120,17 @@ class ProcessTempSensor(LineReceiver):
                     sma = configInfo.sma()
                     if sma is not None:
                         log.info( 'Writing to topic: %s, val: %s' % (topic, str(sma)))
-                        self.mqttc.connect(mosquitto_url, 1883, keepalive=1000)
-                        self.mqttc.publish(topic, str(sma))
-                        # let's remove 5 oldest readings so we can build deque back to 10
-                        configInfo.remove(5)
+                        try:
+                            self.mqttc.connect(mosquitto_url, 1883, keepalive=1000)
+                            self.mqttc.publish(topic, str(sma))
+                            # let's remove 5 oldest readings so we can build deque back to 10
+                            configInfo.remove(5)
+                        except socket_error as serr:
+                            if serr.errno != errno.ECONNREFUSED:
+                                # Not the error we are looking for, re-raise
+                                raise serr
+                            else:
+                                log.warn('Could not connect to mosquitto')
                     else:
                         log.debug( 'Did not write sma because is None')
                     #mqttc.loop(2)
