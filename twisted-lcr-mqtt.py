@@ -72,7 +72,8 @@ mosquitto_url = config['mqtt-url']
 logentries_key = config['log-entries-key']
 logging_level = config['log-level']
 
-logging.basicConfig(level=logging_level or logging.INFO)
+logging.basicConfig(level=logging_level or logging.INFO,format='%(asctime)s %(levelname)s %(message)s')
+
 log = logging.getLogger()
 
 # for each id, let's create a dict with the id, and a temp sensor cloass
