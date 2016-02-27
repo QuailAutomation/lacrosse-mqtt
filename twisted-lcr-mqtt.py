@@ -1,7 +1,7 @@
 __author__ = 'craigh'
 import sys,traceback
 import os
-#from logentries import LogentriesHandler
+from logentries import LogentriesHandler
 import logging
 import json
 import socket
@@ -72,9 +72,13 @@ mosquitto_url = config['mqtt-url']
 logentries_key = config['log-entries-key']
 logging_level = config['log-level']
 
-logging.basicConfig(level=logging_level or logging.INFO,format='%(asctime)s %(levelname)s %(message)s')
+#logging.basicConfig(level=logging_level or logging.INFO,format='%(asctime)s %(levelname)s %(message)s')
+#log = logging.getLogger()
 
-log = logging.getLogger()
+log = logging.getLogger('logentries')
+log.setLevel(level=logging_level or logging.INFO)
+
+log.addHandler(LogentriesHandler(logentries_key))
 
 # for each id, let's create a dict with the id, and a temp sensor cloass
 #TempSensor
@@ -158,12 +162,6 @@ def SerialInit():
     reactor.run()
 
 log.info('Starting')
-
-
-#log = logging.getLogger('logentries')
-#log.setLevel(logging.INFO)
-
-#log.addHandler(LogentriesHandler(logentries_key))
 
 observer = twisted_log.PythonLoggingObserver(loggerName='logentries')
 observer.start()
