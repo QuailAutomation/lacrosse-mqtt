@@ -7,6 +7,7 @@ import json
 import socket
 import math
 
+import numpy
 from twisted.protocols.basic import LineReceiver
 
 from twisted.internet import reactor
@@ -19,12 +20,6 @@ from collections import deque
 from twisted.python import log as twisted_log
 
 
-def stddev(lst):
-    """returns the standard deviation of lst"""
-    mn = mean(lst)
-    variance = sum([(e - mn) ** 2 for e in lst])
-    return math.sqrt(variance)
-
 class TempSensor:
     def __init__(self, topic, min, max):
         self.topic = str(topic)
@@ -33,7 +28,8 @@ class TempSensor:
         self.last10Readings = deque(maxlen=10)
 
     def sma(self):
-        log.debug('Standard deviation is: %f' % (stddev(self.last10Readings)))
+        sd = numpy.std(self.last10Readings, ddof=1)
+        log.debug('Standard deviation is: %f' % sd)
         sumSamples = sum(self.last10Readings)
         numSamples = len(self.last10Readings)
         log.debug('Sum: ' + str(sumSamples))

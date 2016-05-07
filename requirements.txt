@@ -1,3 +1,4 @@
 pyserial
 paho-mqtt
 logentries
+numpy
