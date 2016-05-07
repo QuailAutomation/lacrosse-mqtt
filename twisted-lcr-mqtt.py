@@ -5,6 +5,8 @@ from logentries import LogentriesHandler
 import logging
 import json
 import socket
+import math
+
 from twisted.protocols.basic import LineReceiver
 
 from twisted.internet import reactor
@@ -17,6 +19,12 @@ from collections import deque
 from twisted.python import log as twisted_log
 
 
+def stddev(lst):
+    """returns the standard deviation of lst"""
+    mn = mean(lst)
+    variance = sum([(e - mn) ** 2 for e in lst])
+    return math.sqrt(variance)
+
 class TempSensor:
     def __init__(self, topic, min, max):
         self.topic = str(topic)
@@ -25,6 +33,7 @@ class TempSensor:
         self.last10Readings = deque(maxlen=10)
 
     def sma(self):
+        log.debug('Standard deviation is: %f' % (stddev(self.last10Readings)))
         sumSamples = sum(self.last10Readings)
         numSamples = len(self.last10Readings)
         log.debug('Sum: ' + str(sumSamples))
@@ -37,6 +46,7 @@ class TempSensor:
             logging.debug('Avg %f' % avg)
             return avg
 
+
     def submitSample(self, sample):
         log.debug('submit sample called with: ' + str(sample))
         # check if within 1 degree of sma, if it exists
@@ -46,6 +56,8 @@ class TempSensor:
             if abs(sample - mostRecentAvg) < 1:
                 self.last10Readings.append(sample)
                 log.debug( 'Submitted sample')
+            else:
+                log.debug('Did not accept sample: %f , because it was too different than average: %f ' %(sample,mostRecentAvg))
         else:
             if self.min <= sample <= self.max:
                 self.last10Readings.append(sample)
@@ -91,9 +103,6 @@ for key in sensorConfig:
     min = sensorConfig[key]['valid-range']['min']
     log.info('Min: %s, Max: %s' % (min,sensorConfig[key]['valid-range']['max']))
     deviceToTopicMap[key] = TempSensor(sensorConfig[key]['mqtt-topic'],sensorConfig[key]['valid-range']['min'],sensorConfig[key]['valid-range']['max'])
-
-
-
 
 
 class THOptions(usage.Options):
