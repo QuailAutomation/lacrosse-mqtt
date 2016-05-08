@@ -53,7 +53,7 @@ class TempSensor:
                 self.last10Readings.append(sample)
                 log.debug( 'Submitted sample')
             else:
-                log.debug('Did not accept sample: %f , because it was too different than average: %f ' %(sample,mostRecentAvg))
+                log.info('Did not accept sample: %f , because it was too different than average: %f ' %(sample,mostRecentAvg))
         else:
             if self.min <= sample <= self.max:
                 self.last10Readings.append(sample)
