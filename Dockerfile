@@ -16,6 +16,7 @@ RUN pip install -r /tmp/requirements.txt
 RUN useradd pi
 RUN mkdir -p /home/pi
 RUN usermod -a -G dialout pi
+ADD sensors.py /home/pi/sensors.py
 ADD temperatureprocessing.py /home/pi/temperatureprocessing.py
 RUN chown -R pi /home/pi/
 USER pi
