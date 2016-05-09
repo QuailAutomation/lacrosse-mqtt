@@ -9,20 +9,20 @@ RUN apt-get update && \
 ADD requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
 
-ENV TZ=America/Los_Angeles
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+#ENV TZ=America/Los_Angeles
+#RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Create runtime user
 RUN useradd pi
 RUN mkdir -p /home/pi
 RUN usermod -a -G dialout pi
-ADD twisted-lcr-mqtt.py /home/pi/twisted-lcr-mqtt.py
+ADD temperatureprocessing.py /home/pi/temperatureprocessing.py
 RUN chown -R pi /home/pi/
 USER pi
 
-#ADD twisted-lcr-mqtt.py /home/pi/twisted-lcr-mqtt.py
+#ADD temperatureprocessing.py /home/pi/temperatureprocessing.py
 
 
 #RUN chown -R pi /home/pi/
 
-CMD ["python","/home/pi/twisted-lcr-mqtt.py"] 
+CMD ["python","/home/pi/temperatureprocessing.py"]

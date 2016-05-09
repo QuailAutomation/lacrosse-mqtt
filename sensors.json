@@ -1,6 +1,8 @@
 {
 	"mqtt-url": "192.168.0.230",
 	"serial-port": "/dev/ttyUSB0",
+	"log-entries-key": "<put your log entries key here>",
+	"log-level": "DEBUG",
 	"sensors": {
 		"80": {
 			"mqtt-topic": "sensors/garage-south/temperature",
