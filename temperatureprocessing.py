@@ -78,20 +78,23 @@ class ProcessTempSensor(LineReceiver):
                 log.debug("temp: '%f'" % temp)
                 try:
                     configInfo = deviceIdtoSensorMap[key]
-                    configInfo.submitsample(temp)
-                    sma = configInfo.sma()
-                    if sma is not None:
-                        topic = deviceIdtoTopic[key]
-                        log.info('Writing to topic: %s, val: %s' % (topic, str(sma)))
-                        try:
-                            self.mqttc.connect(mosquitto_url, 1883, keepalive=1000)
-                            self.mqttc.publish(topic, str(sma))
-                            # let's remove 5 oldest readings so we can build deque back to 10
-                            configInfo.remove(5)
-                        except socket.error:
-                            log.warn('Could not connect to mosquitto')
-                    else:
-                        log.debug( 'Did not write sma because is None')
+                    try:
+                        configInfo.submitsample(temp)
+                        sma = configInfo.sma()
+                        if sma is not None:
+                            topic = deviceIdtoTopic[key]
+                            log.info('Writing to topic: %s, val: %s' % (topic, str(sma)))
+                            try:
+                                self.mqttc.connect(mosquitto_url, 1883, keepalive=1000)
+                                self.mqttc.publish(topic, str(sma))
+                                # let's remove 5 oldest readings so we can build deque back to 10
+                                configInfo.remove(5)
+                            except socket.error:
+                                log.warn('Could not connect to mosquitto')
+                        else:
+                            log.debug( 'Did not write sma because is None')
+                    except ValueError:
+                        log.info('Value error, sample ignored: %f' % temp)
                 except KeyError:
                     log.info('Key not found: ' + key)
         except (ValueError, IndexError):
