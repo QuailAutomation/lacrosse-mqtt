@@ -2,7 +2,7 @@ FROM hypriot/rpi-python:2.7.3
 MAINTAINER craig
 
 RUN apt-get update && \
-    apt-get -y install vim python-twisted python-pip && \
+    apt-get -y install vim python-twisted python-pip gcc && \
     apt-get clean
 
 # Install Python requirements
