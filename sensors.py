@@ -27,7 +27,7 @@ class TempSensor:
             return None
         else:
             avg = self.average();
-            logging.debug('Avg %f' % avg)
+            log.debug('Avg %f' % avg)
             return avg
 
     def submitsample(self, sample):
@@ -38,9 +38,9 @@ class TempSensor:
         if mostRecentAvg is not None:
             if abs(sample - mostRecentAvg) < 1:
                 self.last10Readings.append(sample)
-                log.debug( 'Submitted sample')
+                log.debug('Submitted sample')
             else:
-                log.info('Did not accept sample: %f , because it was too different than average: %f ' %(sample,mostRecentAvg))
+                log.warn('Did not accept sample: %f , because it was too different than average: %f ' %(sample,mostRecentAvg))
                 raise ValueError('Sample was greater than 1 degrees higher than average')
         else:
             if self.min <= sample <= self.max:
