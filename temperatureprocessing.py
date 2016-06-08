@@ -33,10 +33,11 @@ logentries_key = config['log-entries-key'] or  None
 logging_level = config['log-level'] or "INFO"
 
 if logentries_key is not None:
-    log = logging.getLogger('logentries')
+    log = logging.getLogger()
     log.addHandler(LogentriesHandler(logentries_key))
 else:
-    log = logging.getLogger('__name__')
+    logging.basicConfig(level=logging.INFO)
+    log = logging.getLogger()
 
 log.setLevel(level=logging_level or logging.INFO)
 # for each id, let's create a dict with the id, and a temp sensor cloass
@@ -101,6 +102,7 @@ class ProcessTempSensor(LineReceiver):
             traceback.print_exc()
             log.error('Unable to parse data %s' % line)
             return
+
 
 def SerialInit():
     o = THOptions()
