@@ -1,6 +1,9 @@
 from unittest import TestCase
 from sensors import TempSensor
 
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 class TestTempSensor(TestCase):
 
