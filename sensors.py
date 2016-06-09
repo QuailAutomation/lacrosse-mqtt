@@ -6,12 +6,14 @@ log = logging.getLogger(__name__)
 
 
 class TempSensor:
-    def __init__(self,  min, max):
+    maxAllowableDifferenceFromAverage = 4
+
+    def __init__(self,  min, max, maxdifferencefromaverage=4):
         self.min = min
         self.max = max
         log.info('Sensor created: Min: %s, Max: %s' % (min, max))
-
         self.last10Readings = deque(maxlen=10)
+        self.maxAllowableDifferenceFromAverage = maxdifferencefromaverage
 
     def average(self):
         sumSamples = sum(self.last10Readings)
@@ -36,11 +38,12 @@ class TempSensor:
         mostRecentAvg = self.average()
         log.debug('most recent sma: ' + str(mostRecentAvg))
         if mostRecentAvg is not None:
-            if abs(sample - mostRecentAvg) < 1:
+            if abs(sample - mostRecentAvg) < self.maxAllowableDifferenceFromAverage:
                 self.last10Readings.append(sample)
                 log.debug('Submitted sample')
             else:
-                log.warn('Did not accept sample: %f , because it was too different than average: %f ' %(sample,mostRecentAvg))
+                log.warn('Did not accept sample: %f , because it was too different than average: %f , max allowable: %f'
+                         %(sample,mostRecentAvg,self.maxAllowableDifferenceFromAverage))
                 raise ValueError('Sample was greater than 1 degrees higher than average')
         else:
             if self.min <= sample <= self.max:
