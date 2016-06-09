@@ -42,7 +42,6 @@ else:
 log.setLevel(level=logging_level or logging.INFO)
 # for each id, let's create a dict with the id, and a temp sensor cloass
 deviceIdtoSensorMap = {}
-
 # this dict is sensors id, mqtt topic to write to
 deviceIdtoTopic = {}
 
