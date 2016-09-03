@@ -58,7 +58,7 @@ for key in sensorConfig:
     log.info('Topic: %s' % topic)
     min = sensorConfig[key]['valid-range']['min']
     device_id_to_temp_sensor_map[key] = TempSensor(sensorConfig[key]['valid-range']['min'], sensorConfig[key]['valid-range']['max'])
-    device_id_to_humidity_sensor_map[key] = TempSensor(0,97)
+    device_id_to_humidity_sensor_map[key] = TempSensor(min=0, max=97, max_difference_from_average=15)
     deviceIdtoTopic[key] = topic
 
 
