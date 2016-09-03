@@ -29,7 +29,11 @@ with open(config_file) as json_file:
 # read some env variables
 serial_port = config['serial-port']
 mosquitto_url = config['mqtt-url']
-logentries_key = config['log-entries-key'] or  None
+try:
+    logentries_key = config['log-entries-key']
+except KeyError:
+    logentries_key = None
+
 logging_level = config['log-level'] or "INFO"
 
 if logentries_key is not None:
@@ -41,7 +45,9 @@ else:
 
 log.setLevel(level=logging_level or logging.INFO)
 # for each id, let's create a dict with the id, and a temp sensor cloass
-deviceIdtoSensorMap = {}
+device_id_to_temp_sensor_map = {}
+device_id_to_humidity_sensor_map = {}
+
 # this dict is sensors id, mqtt topic to write to
 deviceIdtoTopic = {}
 
@@ -51,7 +57,8 @@ for key in sensorConfig:
     topic = sensorConfig[key]['mqtt-topic']
     log.info('Topic: %s' % topic)
     min = sensorConfig[key]['valid-range']['min']
-    deviceIdtoSensorMap[key] = TempSensor(sensorConfig[key]['valid-range']['min'], sensorConfig[key]['valid-range']['max'])
+    device_id_to_temp_sensor_map[key] = TempSensor(sensorConfig[key]['valid-range']['min'], sensorConfig[key]['valid-range']['max'])
+    device_id_to_humidity_sensor_map[key] = TempSensor(0,97)
     deviceIdtoTopic[key] = topic
 
 
@@ -65,38 +72,56 @@ class ProcessTempSensor(LineReceiver):
     debug = True
     mqttc = mqtt.Client('python_pub')
 
+    def write_to_mqtt(self, topic, value):
+        log.info('Writing to topic: %s, val: %s' % (topic, str(value)))
+        try:
+            self.mqttc.connect(mosquitto_url, 1883, keepalive=1000)
+            self.mqttc.publish(topic, str(value))
+        except socket.error:
+            log.warn('Could not connect to mosquitto')
+
+    def get_sensor(self,key, type):
+        try:
+            if type == 'temperature':
+                return device_id_to_temp_sensor_map[key]
+            elif type == 'humidity':
+                return device_id_to_humidity_sensor_map[key]
+            else:
+                log.error('Illegal sensor type: "%s"' % type)
+        except KeyError:
+            log.info('Key not found: ' + key)
+
+    def submit_sample(self,sensor,sample_value,type):
+        log.debug("submit sample called :" + str(sample_value) )
+        try:
+            sensor.submit_sample(sample_value)
+            sma = sensor.sma()
+            if sma is not None:
+                self.write_to_mqtt(topic + type, sma)
+                # let's remove 5 oldest readings so we can build deque back to 10
+                sensor.remove(5)
+            else:
+                log.debug('Did not write sma because is None')
+        except ValueError:
+            log.info('Value error, sample ignored: %f' % sample_value)
+
     def lineReceived(self, line):
         try:
             msg = line.rstrip()
             log.debug(msg)
-            if msg.startswith('D:') and len(msg) >= 13:
+            if msg.startswith('D:') and len(msg) >= 11:
                 log.info("Processing: %s" % msg)
                 msgElements = msg.split(':')
                 key = msgElements[1]
                 log.debug('key: %s' % key)
                 temp = float(msgElements[2])
                 log.debug("temp: '%f'" % temp)
-                try:
-                    configInfo = deviceIdtoSensorMap[key]
-                    try:
-                        configInfo.submitsample(temp)
-                        sma = configInfo.sma()
-                        if sma is not None:
-                            topic = deviceIdtoTopic[key]
-                            log.info('Writing to topic: %s, val: %s' % (topic, str(sma)))
-                            try:
-                                self.mqttc.connect(mosquitto_url, 1883, keepalive=1000)
-                                self.mqttc.publish(topic, str(sma))
-                                # let's remove 5 oldest readings so we can build deque back to 10
-                                configInfo.remove(5)
-                            except socket.error:
-                                log.warn('Could not connect to mosquitto')
-                        else:
-                            log.debug( 'Did not write sma because is None')
-                    except ValueError:
-                        log.info('Value error, sample ignored: %f' % temp)
-                except KeyError:
-                    log.info('Key not found: ' + key)
+                sensor = self.get_sensor(key,'temperature')
+                self.submit_sample(sensor,temp,'temperature')
+                humidity = float(msgElements[3])
+                sensor = self.get_sensor(key, 'humidity')
+                self.submit_sample(sensor, humidity, 'humidity')
+                log.debug("humidity: '%f'" % humidity)
         except (ValueError, IndexError):
             traceback.print_exc()
             log.error('Unable to parse data %s' % line)
