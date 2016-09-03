@@ -18,7 +18,7 @@ class TempSensor:
     def average(self):
         sum_samples = sum(self.last_10_readings)
         num_samples = len(self.last_10_readings)
-        if num_samples > 0:
+        if num_samples > 3:
             return sum_samples/num_samples
         else:
             return None
