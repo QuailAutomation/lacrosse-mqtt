@@ -5,21 +5,21 @@
 	"log-level": "DEBUG",
 	"sensors": {
 		"80": {
-			"mqtt-topic": "sensors/garage-south/temperature",
+			"mqtt-topic": "sensors/garage-south/",
 			"valid-range": {
 				"min": 10,
 				"max": 60
 			}
 		},
 		"CC": {
-			"mqtt-topic": "sensors/kitchen/temperature",
+			"mqtt-topic": "sensors/kitchen/",
 			"valid-range": {
 				"min": 10,
 				"max": 40
 			}
 		},
 		"64": {
-			"mqtt-topic": "sensors/garage-south-wine/temperature",
+			"mqtt-topic": "sensors/garage-south-wine/",
 			"valid-range": {
 				"min": 10,
 				"max": 60

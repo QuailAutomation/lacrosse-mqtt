@@ -91,7 +91,7 @@ class ProcessTempSensor(LineReceiver):
         except KeyError:
             log.info('Key not found: ' + key)
 
-    def submit_sample(self,sensor,sample_value,type):
+    def submit_sample(self, sensor, sample_value, topic, type):
         log.debug("submit sample called :" + str(sample_value) )
         try:
             sensor.submit_sample(sample_value)
@@ -117,11 +117,15 @@ class ProcessTempSensor(LineReceiver):
                 temp = float(msgElements[2])
                 log.debug("temp: '%f'" % temp)
                 sensor = self.get_sensor(key,'temperature')
-                self.submit_sample(sensor,temp,'temperature')
-                humidity = float(msgElements[3])
-                sensor = self.get_sensor(key, 'humidity')
-                self.submit_sample(sensor, humidity, 'humidity')
-                log.debug("humidity: '%f'" % humidity)
+                if sensor is not  None:
+                    topic = deviceIdtoTopic[key]
+                    self.submit_sample(sensor,temp, topic, 'temperature')
+                    humidity = float(msgElements[3])
+                    sensor = self.get_sensor(key, 'humidity')
+                    if humidity < 99:
+                        self.submit_sample(sensor, humidity, topic, 'humidity')
+                    log.debug("humidity: '%f'" % humidity)
+
         except (ValueError, IndexError):
             traceback.print_exc()
             log.error('Unable to parse data %s' % line)
