@@ -2,11 +2,21 @@ __author__ = 'craigh'
 
 import sys, traceback
 import os
-from logentries import LogentriesHandler
+
 import logging
 import json
 import socket
 import thread
+
+#some optional logging choices
+try:
+    from logentries import LogentriesHandler
+except ImportError:
+    pass
+try:
+    import graypi
+except ImportError:
+    pass
 
 from twisted.protocols.basic import LineReceiver
 
@@ -34,11 +44,21 @@ try:
 except KeyError:
     logentries_key = None
 
+try:
+    gelf_url = config['gelf-url']
+except KeyError:
+    gelf_url = None
+
 logging_level = config['log-level'] or "INFO"
 
 if logentries_key is not None:
     log = logging.getLogger()
     log.addHandler(LogentriesHandler(logentries_key))
+elif gelf_url is not None:
+    log = logging.getLogger()
+    log.setLevel(logging.DEBUG)
+    handler = graypy.GELFHandler('192.168.0.,230', 12201)
+    log.addHandler(handler)
 else:
     logging.basicConfig(level=logging.INFO)
     log = logging.getLogger()
@@ -149,6 +169,6 @@ def SerialInit():
 
 log.info('Starting')
 
-observer = twisted_log.PythonLoggingObserver(loggerName='logentries')
+observer = twisted_log.PythonLoggingObserver()
 observer.start()
 thread.start_new_thread(SerialInit())
