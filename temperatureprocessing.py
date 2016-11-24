@@ -14,7 +14,7 @@ try:
 except ImportError:
     pass
 try:
-    import graypi
+    import graypy
 except ImportError:
     pass
 
@@ -55,9 +55,8 @@ if logentries_key is not None:
     log = logging.getLogger()
     log.addHandler(LogentriesHandler(logentries_key))
 elif gelf_url is not None:
-    log = logging.getLogger()
-    log.setLevel(logging.DEBUG)
-    handler = graypy.GELFHandler('192.168.0.,230', 12201)
+    log = logging.getLogger('temp')
+    handler = graypy.GELFHandler(gelf_url, 12201)
     log.addHandler(handler)
 else:
     logging.basicConfig(level=logging.INFO)
@@ -169,6 +168,6 @@ def SerialInit():
 
 log.info('Starting')
 
-observer = twisted_log.PythonLoggingObserver()
+observer = twisted_log.PythonLoggingObserver(loggerName='temp')
 observer.start()
 thread.start_new_thread(SerialInit())
