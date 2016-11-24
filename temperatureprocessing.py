@@ -56,7 +56,7 @@ if logentries_key is not None:
     log.addHandler(LogentriesHandler(logentries_key))
 elif gelf_url is not None:
     log = logging.getLogger('temp')
-    handler = graypy.GELFHandler(gelf_url, 12201)
+    handler = graypy.GELFHandler(gelf_url, 12201, localname='lacrosse-temp', facility='maui')
     log.addHandler(handler)
 else:
     logging.basicConfig(level=logging.INFO)
