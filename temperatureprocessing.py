@@ -129,7 +129,7 @@ class ProcessTempSensor(LineReceiver):
             msg = line.rstrip()
             log.debug(msg)
             if msg.startswith('D:') and len(msg) >= 11:
-                log.info("Processing: %s" % msg)
+                log.debug("Processing: %s" % msg)
                 msgElements = msg.split(':')
                 key = msgElements[1]
                 log.debug('key: %s' % key)
