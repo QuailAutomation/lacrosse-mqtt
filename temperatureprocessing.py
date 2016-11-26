@@ -55,7 +55,7 @@ if logentries_key is not None:
     log = logging.getLogger()
     log.addHandler(LogentriesHandler(logentries_key))
 elif gelf_url is not None:
-    log = logging.getLogger('temp')
+    log = logging.getLogger()
     handler = graypy.GELFHandler(gelf_url, 12201, localname='lacrosse-temp', facility='maui')
     log.addHandler(handler)
 else:
@@ -76,8 +76,8 @@ for key in sensorConfig:
     topic = sensorConfig[key]['mqtt-topic']
     log.info('Topic: %s' % topic)
     min = sensorConfig[key]['valid-range']['min']
-    device_id_to_temp_sensor_map[key] = TempSensor(sensorConfig[key]['valid-range']['min'], sensorConfig[key]['valid-range']['max'])
-    device_id_to_humidity_sensor_map[key] = TempSensor(min=0, max=97, max_difference_from_average=15)
+    device_id_to_temp_sensor_map[key] = TempSensor(key,sensorConfig[key]['valid-range']['min'], sensorConfig[key]['valid-range']['max'])
+    device_id_to_humidity_sensor_map[key] = TempSensor(id=key,min=0, max=97, max_difference_from_average=15)
     deviceIdtoTopic[key] = topic
 
 
@@ -122,7 +122,7 @@ class ProcessTempSensor(LineReceiver):
             else:
                 log.debug('Did not write sma because is None')
         except ValueError:
-            log.info('Value error, sample ignored: %f' % sample_value)
+            log.info('Invalid reading. Sample ignored. value=%f' % sample_value)
 
     def lineReceived(self, line):
         try:
@@ -139,12 +139,13 @@ class ProcessTempSensor(LineReceiver):
                 if sensor is not  None:
                     topic = deviceIdtoTopic[key]
                     self.submit_sample(sensor,temp, topic, 'temperature')
+                    log.debug('Submitted temperature reading. key=%s value=%f' % (key, temp))
+
                     humidity = float(msgElements[3])
                     sensor = self.get_sensor(key, 'humidity')
                     if humidity < 99:
+                        log.debug("humidity: '%f'" % humidity)
                         self.submit_sample(sensor, humidity, topic, 'humidity')
-                    log.debug("humidity: '%f'" % humidity)
-
         except (ValueError, IndexError):
             traceback.print_exc()
             log.error('Unable to parse data %s' % line)
@@ -168,6 +169,6 @@ def SerialInit():
 
 log.info('Starting')
 
-observer = twisted_log.PythonLoggingObserver(loggerName='temp')
+observer = twisted_log.PythonLoggingObserver()
 observer.start()
 thread.start_new_thread(SerialInit())

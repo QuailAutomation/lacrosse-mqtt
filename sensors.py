@@ -8,7 +8,8 @@ log = logging.getLogger(__name__)
 class TempSensor:
     max_allowable_difference_from_average = 4
 
-    def __init__(self, min, max, max_difference_from_average=4):
+    def __init__(self,id, min, max, max_difference_from_average=4):
+        self.id = id
         self.min = min
         self.max = max
         log.info('Sensor created: Min: %s, Max: %s' % (min, max))
@@ -42,9 +43,9 @@ class TempSensor:
                 self.last_10_readings.append(temperature)
                 log.debug('Submitted sample')
             else:
-                log.warn('Did not accept sample: %f , because it was too different than average: %f , max allowable: %f'
-                         % (temperature, mostRecentAvg, self.max_allowable_difference_from_average))
-                raise ValueError('Sample was greater than 1 degrees higher than average')
+                log.warn('Did not accept sample.  id=%s ,value=%f , because it was too different than average=%f , max_allowable=%f elements=%s'
+                         % (str(id),temperature, mostRecentAvg, self.max_allowable_difference_from_average,self.last_10_readings))
+                raise ValueError('Sample variabnce was greater allowable average')
         else:
             if self.min <= temperature <= self.max:
                 self.last_10_readings.append(temperature)
