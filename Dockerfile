@@ -1,4 +1,4 @@
-FROM hpython:2.7.3
+FROM python
 
 #FROM hypriot/rpi-python:2.7.3
 MAINTAINER craig
