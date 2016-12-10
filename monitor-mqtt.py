@@ -124,11 +124,7 @@ def get_sensor(key, type):
 def write_to_mqtt(topic, value):
     log.info('Writing to topic: %s, val: %s' % (topic, str(value)))
     try:
-        #client.connect(mosquitto_url, 1883, keepalive=1000)
         client.publish(topic, str(value))
-        log.debug("Sleeping for 3 seconds")
-        sleep(3)
-        log.debug("Done sleeping")
     except socket.error:
         log.warn('Could not connect to mosquitto')
         client.connect(mosquitto_url, 1883, keepalive=1000)
