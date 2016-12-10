@@ -148,8 +148,8 @@ def on_message(client, userdata, msg):
     payload = msg.payload
     msgElements = payload.split(':')
     key = msgElements[1]
+    log.debug('key: %s' % key)
     if is_ok_to_accept_reading(key):
-        log.debug('key: %s' % key)
         temp = float(msgElements[2])
         log.debug("temp: '%f'" % temp)
         sensor = get_sensor(key, 'temperature')
