@@ -7,6 +7,10 @@ log = logging.getLogger(__name__)
 
 class TempSensor:
     max_allowable_difference_from_average = 4
+    # when we start accepting samples we are vulnerable to accepting a bad value early, which will
+    # result in not accepting more appropriate values later because of an inaccurate early reading
+    # so, if we reject 4 samples consecutively, we will flush the readings and start again
+    current_number_sample_rejections = 0
 
     def __init__(self,id, min, max, max_difference_from_average=4):
         self.id = id
@@ -41,11 +45,19 @@ class TempSensor:
         if mostRecentAvg is not None:
             if abs(temperature - mostRecentAvg) < self.max_allowable_difference_from_average:
                 self.last_10_readings.append(temperature)
+                self.current_number_sample_rejections = 0
                 log.debug('Submitted sample')
             else:
-                log.warn('Did not accept sample.  id=%s ,value=%f , because it was too different than average=%f , max_allowable=%f elements=%s'
-                         % (str(id),temperature, mostRecentAvg, self.max_allowable_difference_from_average,self.last_10_readings))
-                raise ValueError('Sample variabnce was greater allowable average')
+                if self.current_number_sample_rejections == 3:
+                    self.last_10_readings.clear()
+                    log.debug("Cleared last 10 readings because we've rejected too many samples")
+                else:
+                    self.current_number_sample_rejections += 1
+                    log.warn(
+                        'Did not accept sample.  id=%s ,value=%f , because it was too different than average=%f , max_allowable=%f elements=%s'
+                        % (str(id), temperature, mostRecentAvg, self.max_allowable_difference_from_average,
+                           self.last_10_readings))
+                raise ValueError('Sample variance was greater allowable average')
         else:
             if self.min <= temperature <= self.max:
                 self.last_10_readings.append(temperature)

@@ -29,8 +29,6 @@ mosquitto_url = config['mqtt-url']
 
 log = logging.getLogger()
 
-
-
 try:
     logentries_key = config['log-entries-key']
 except KeyError:
@@ -62,7 +60,7 @@ if not isLogConfigInfo:
 logging_level = config['log-level'] or "INFO"
 log.setLevel(level=logging_level or logging.INFO)
 
-# for each id, let's create a dict with the id, and a temp sensor cloass
+# for each id, let's create a dict with the id, and a temp sensor class
 device_id_to_temp_sensor_map = {}
 device_id_to_humidity_sensor_map = {}
 
@@ -92,9 +90,10 @@ def on_connect(client, userdata, flags, rc):
 device_id_to_last_reading_time = {}
 
 
+# if i we reject 5 entries in a
 def is_ok_to_accept_reading(key):
     return_value = True
-    log.debug("checking if we've had a reading withing the ingore window")
+    log.debug("checking if we've had a reading within the ingore window")
     now = datetime.datetime.now()
     try:
         time_last_reading = device_id_to_last_reading_time[key]
@@ -110,6 +109,7 @@ def is_ok_to_accept_reading(key):
     device_id_to_last_reading_time[key] = datetime.datetime.now()
     return return_value
 
+
 def get_sensor(key, type):
     try:
         if type == 'temperature':
@@ -120,6 +120,7 @@ def get_sensor(key, type):
             log.error('Illegal sensor type: "%s"' % type)
     except KeyError:
         log.info('Key not found: ' + key)
+
 
 def write_to_mqtt(topic, value):
     log.info('Writing to topic: %s, val: %s' % (topic, str(value)))
@@ -144,6 +145,7 @@ def submit_sample(sensor, sample_value, topic, type):
     except ValueError:
         log.info('Invalid reading. Sample ignored. value=%f' % sample_value)
 
+
 def on_message(client, userdata, msg):
     payload = msg.payload
     msgElements = payload.split(':')
@@ -166,7 +168,6 @@ def on_message(client, userdata, msg):
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
-
 client.connect(mosquitto_url, 1883, 60)
 
 # Blocking call that processes network traffic, dispatches callbacks and
