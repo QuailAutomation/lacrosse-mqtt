@@ -138,9 +138,9 @@ def submit_sample(sensor, sample_value, topic, type):
         sma = sensor.sma()
         if sma is not None:
             if type == 'temperature':
-                write_to_mqtt(topic + type, str("%.1f" % sma))
+                write_to_mqtt(topic + type, round(sma,1))
             elif type == 'humidity':
-                write_to_mqtt(topic + type, str("%.0f" % sma))
+                write_to_mqtt(topic + type, round(sma,0))
             # let's remove 5 oldest readings so we can build deque back to 10
             else:
                 log.warn("Received unexpected sample type: %s" % type)

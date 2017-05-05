@@ -79,8 +79,8 @@
       <file leaf-file-name="monitor-mqtt.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="597">
-              <caret line="144" column="17" selection-start-line="144" selection-start-column="17" selection-end-line="144" selection-end-column="17" />
+            <state relative-caret-position="582">
+              <caret line="143" column="0" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -612,7 +612,14 @@
       <option name="project" value="LOCAL" />
       <updated>1494007503755</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="temperature to 1 decimal place, humidity written at 0 decimal places">
+      <created>1494009368568</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1494009368568</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -688,7 +695,8 @@
     <MESSAGE value="put logger call in spot which is more appropriate" />
     <MESSAGE value="if we reject 4 submitted samples in a row because different from average, we clear our previous readings in case we started off with a bad reading." />
     <MESSAGE value="reduce precision of sma to 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="reduce precision of sma to 1" />
+    <MESSAGE value="temperature to 1 decimal place, humidity written at 0 decimal places" />
+    <option name="LAST_COMMIT_MESSAGE" value="temperature to 1 decimal place, humidity written at 0 decimal places" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1041,8 +1049,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="144" column="17" selection-start-line="144" selection-start-column="17" selection-end-line="144" selection-end-column="17" />
+        <state relative-caret-position="582">
+          <caret line="143" column="0" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
