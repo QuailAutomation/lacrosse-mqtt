@@ -137,7 +137,7 @@ def submit_sample(sensor, sample_value, topic, type):
         sensor.submit_sample(sample_value)
         sma = sensor.sma()
         if sma is not None:
-            write_to_mqtt(topic + type, sma)
+            write_to_mqtt(topic + type, str("%.1f" % sma))
             # let's remove 5 oldest readings so we can build deque back to 10
             sensor.remove(5)
         else:

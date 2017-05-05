@@ -1,3 +1,4 @@
+import unittest
 from unittest import TestCase
 from sensors import TempSensor
 
@@ -31,7 +32,7 @@ class TestTempSensor(TestCase):
                 self.fail
             except ValueError:
                 pass
-
         sensor.submit_sample(12)
 
-
+if __name__ == '__main__':
+    unittest.main()
