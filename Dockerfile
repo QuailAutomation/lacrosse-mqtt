@@ -25,5 +25,5 @@ USER pi
 
 
 #RUN chown -R pi /home/pi/
-
+EXPOSE 5000
 CMD ["python","/home/pi/monitor-mqtt.py"]
