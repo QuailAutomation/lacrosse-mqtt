@@ -6,6 +6,11 @@ import logging
 import socket
 import datetime
 from time import sleep
+from flask import Flask, jsonify
+from collections import deque
+
+app = Flask(__name__)
+
 #some optional logging choices
 try:
     from logentries import LogentriesHandler
@@ -170,6 +175,21 @@ def on_message(client, userdata, msg):
                 log.debug("humidity: '%f'" % humidity)
                 submit_sample(sensor, humidity, topic, 'humidity')
 
+class SetEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, TempSensor):
+            return obj.toJSON()
+        return json.JSONEncoder.default(self, obj)
+
+# add rest interface
+@app.route('/lacrosse/1.0/sensors', methods=['GET'])
+def get_tasks():
+    sensor = device_id_to_temp_sensor_map['4']
+    return json.dumps(device_id_to_temp_sensor_map,cls=SetEncoder, sort_keys=True,indent=4, separators=(',', ': ')) #jsonify(device_id_to_temp_sensor_map['4'])
+
+
+app.run(debug=True)
+
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
@@ -180,3 +200,6 @@ client.connect(mosquitto_url, 1883, 60)
 # Other loop*() functions are available that give a threaded interface and a
 # manual interface.
 client.loop_forever()
+
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -1,0 +1,28 @@
+{
+	"mqtt-url": "192.168.1.122",
+	"log-entries-key": "<put your log entries key here>",
+	"log-level": "DEBUG",
+	"sensors": {
+		"E0": {
+			"mqtt-topic": "sensors/test/office/humidor/",
+			"valid-range": {
+				"min": 10,
+				"max": 60
+			}
+		},
+		"CC": {
+			"mqtt-topic": "sensors/test/kitchen/",
+			"valid-range": {
+				"min": 10,
+				"max": 40
+			}
+		},
+		"4": {
+			"mqtt-topic": "sensors/test/garage-south-wine/",
+			"valid-range": {
+				"min": 10,
+				"max": 60
+			}
+		}
+	}
+}

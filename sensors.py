@@ -1,9 +1,9 @@
 from collections import deque
 
 import logging
+import json
 
 log = logging.getLogger(__name__)
-
 
 class TempSensor:
     max_allowable_difference_from_average = 4
@@ -69,3 +69,6 @@ class TempSensor:
     def remove(self, count):
         for _ in range(count):
             self.last_10_readings.popleft()
+
+    def toJSON(self):
+        return {'id': self.id,'min':self.min,'max':self.max,'currentnumberrejections':self.current_number_sample_rejections,'readings':json.dumps(list(self.last_10_readings))}
