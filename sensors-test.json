@@ -3,14 +3,14 @@
 	"log-entries-key": "<put your log entries key here>",
 	"log-level": "DEBUG",
 	"sensors": {
-		"E0": {
+		"48": {
 			"mqtt-topic": "sensors/test/office/humidor/",
 			"valid-range": {
 				"min": 10,
 				"max": 60
 			}
 		},
-		"CC": {
+		"C4": {
 			"mqtt-topic": "sensors/test/kitchen/",
 			"valid-range": {
 				"min": 10,

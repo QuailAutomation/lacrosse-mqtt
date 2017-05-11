@@ -5,6 +5,7 @@ import paho.mqtt.client as mqtt
 import logging
 import socket
 import datetime
+import thread
 from time import sleep
 from flask import Flask, jsonify
 from collections import deque
@@ -187,12 +188,15 @@ def get_tasks():
     sensor = device_id_to_temp_sensor_map['4']
     return json.dumps(device_id_to_temp_sensor_map,cls=SetEncoder, sort_keys=True,indent=4, separators=(',', ': ')) #jsonify(device_id_to_temp_sensor_map['4'])
 
+def flaskThread():
+     app.run(host='0.0.0.0')
 
-app.run(debug=True)
+thread.start_new_thread(flaskThread,())
 
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
+log.info('Connecting to mqtt: %s' % mosquitto_url)
 client.connect(mosquitto_url, 1883, 60)
 
 # Blocking call that processes network traffic, dispatches callbacks and
@@ -200,6 +204,3 @@ client.connect(mosquitto_url, 1883, 60)
 # Other loop*() functions are available that give a threaded interface and a
 # manual interface.
 client.loop_forever()
-
-if __name__ == '__main__':
-    app.run(debug=True)
