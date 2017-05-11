@@ -2,3 +2,4 @@ pyserial
 paho-mqtt
 graypy
 numpy
+flask
