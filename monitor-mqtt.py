@@ -110,7 +110,7 @@ def is_ok_to_accept_reading(key):
         else:
             return_value = False
     except KeyError:
-        log.info('Key not found: ' + key)
+        log.info('Key not found in last reading: ' + key)
 
     device_id_to_last_reading_time[key] = datetime.datetime.now()
     return return_value
@@ -125,7 +125,7 @@ def get_sensor(key, type):
         else:
             log.error('Illegal sensor type: "%s"' % type)
     except KeyError:
-        log.info('Key not found: ' + key)
+        log.info('Key not found: %s, type: %s' % (key,type))
 
 
 def write_to_mqtt(topic, value):
@@ -183,10 +183,14 @@ class SetEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 # add rest interface
-@app.route('/lacrosse/1.0/sensors', methods=['GET'])
-def get_tasks():
-    sensor = device_id_to_temp_sensor_map['4']
+@app.route('/lacrosse/1.0/sensors/temperature', methods=['GET'])
+def get_sensors_temperature():
     return json.dumps(device_id_to_temp_sensor_map,cls=SetEncoder, sort_keys=True,indent=4, separators=(',', ': ')) #jsonify(device_id_to_temp_sensor_map['4'])
+
+@app.route('/lacrosse/1.0/sensors/humidity', methods=['GET'])
+def get_sensors_humidity():
+    return json.dumps(device_id_to_humidity_sensor_map,cls=SetEncoder, sort_keys=True,indent=4, separators=(',', ': ')) #jsonify(device_id_to_temp_sensor_map['4'])
+
 
 def flaskThread():
      app.run(host='0.0.0.0')
