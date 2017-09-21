@@ -21,7 +21,7 @@ build:
   post_ci:
     - docker run --rm --privileged multiarch/qemu-user-static:register --reset
     - docker build -t $DOCKER_ACC/$DOCKER_REPO .
-    - docker tag $DOCKER_ACC/$DOCKER_REPO $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER .
+    - docker tag $DOCKER_ACC/$DOCKER_REPO $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER
     - docker push $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER
     - docker push $DOCKER_ACC/$DOCKER_REPO
 
