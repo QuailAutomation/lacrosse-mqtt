@@ -23,6 +23,7 @@ ADD monitor-mqtt.py /home/pi/monitor-mqtt.py
 RUN chown -R pi /home/pi/
 USER pi
 
+LABEL git-commit=$GIT_COMMIT
 
 #RUN chown -R pi /home/pi/
 EXPOSE 5000

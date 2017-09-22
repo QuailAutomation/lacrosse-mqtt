@@ -14,15 +14,15 @@ env:
   global:
     - DOCKER_REPO=rpi-lacrosse-mqtt
     - DOCKER_ACC=craigham # {account name}
-
+    - CURRENT_VERSION=0.1
 build:
 
   # http://docs.shippable.com/ci/shippableyml/#post_ci
   post_ci:
     - docker run --rm --privileged multiarch/qemu-user-static:register --reset
-    - docker build -t $DOCKER_ACC/$DOCKER_REPO .
-    - docker tag $DOCKER_ACC/$DOCKER_REPO $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER
-    - docker push $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER
+    - docker build -t $DOCKER_ACC/$DOCKER_REPO --build-arg GIT_COMMIT=$COMMIT .
+    - docker tag $DOCKER_ACC/$DOCKER_REPO $DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION.$BUILD_NUMBER
+    - docker push $DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION.$BUILD_NUMBER
     - docker push $DOCKER_ACC/$DOCKER_REPO
 
 # Integrations are used to connect external resources to CI
