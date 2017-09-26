@@ -16,11 +16,12 @@ env:
     - DOCKER_ACC=craigham # {account name}
     - CURRENT_VERSION=0.1
 build:
-
+  pre_ci:
+    - export SHORT_COMMIT='echo $COMMIT | cut -b -7 '
   # http://docs.shippable.com/ci/shippableyml/#post_ci
   post_ci:
     - docker run --rm --privileged multiarch/qemu-user-static:register --reset
-    - docker build -t $DOCKER_ACC/$DOCKER_REPO --build-arg git_commit=$COMMIT .
+    - docker build -t $DOCKER_ACC/$DOCKER_REPO --build-arg git_commit=SHORT_COMMIT .
     - docker tag $DOCKER_ACC/$DOCKER_REPO $DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION.$BUILD_NUMBER
     - docker push $DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION.$BUILD_NUMBER
     - docker push $DOCKER_ACC/$DOCKER_REPO
