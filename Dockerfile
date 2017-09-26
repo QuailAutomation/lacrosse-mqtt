@@ -3,6 +3,8 @@
 FROM hypriot/rpi-python:2.7.3
 MAINTAINER craig
 
+ARG git-commit
+
 #RUN apt-get update && \
 #    apt-get -y install vim python-twisted python-pip gcc && \
 #    apt-get clean
@@ -23,7 +25,7 @@ ADD monitor-mqtt.py /home/pi/monitor-mqtt.py
 RUN chown -R pi /home/pi/
 USER pi
 
-LABEL git-commit=hamilton
+LABEL git-commit=$git-commit
 
 #RUN chown -R pi /home/pi/
 EXPOSE 5000
