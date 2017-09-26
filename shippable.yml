@@ -20,7 +20,7 @@ build:
   # http://docs.shippable.com/ci/shippableyml/#post_ci
   post_ci:
     - docker run --rm --privileged multiarch/qemu-user-static:register --reset
-    - docker build -t $DOCKER_ACC/$DOCKER_REPO --build-arg GIT_COMMIT=$COMMIT .
+    - docker build -t $DOCKER_ACC/$DOCKER_REPO --build-arg GIT_COMMIT=${COMMIT} .
     - docker tag $DOCKER_ACC/$DOCKER_REPO $DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION.$BUILD_NUMBER
     - docker push $DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION.$BUILD_NUMBER
     - docker push $DOCKER_ACC/$DOCKER_REPO
