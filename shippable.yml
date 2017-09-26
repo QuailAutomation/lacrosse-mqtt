@@ -16,7 +16,7 @@ env:
     - DOCKER_ACC=craigham # {account name}
     - CURRENT_VERSION=0.1
 build:
-  pre_ci:
+  ci:
     - export SHORT_COMMIT='echo $COMMIT | cut -b -7 '
   # http://docs.shippable.com/ci/shippableyml/#post_ci
   post_ci:
