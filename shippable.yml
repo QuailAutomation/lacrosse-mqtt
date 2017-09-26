@@ -17,7 +17,7 @@ env:
     - CURRENT_VERSION=0.1
 build:
   ci:
-    - export SHORT_COMMIT='echo $COMMIT | cut -b -7 '
+    - export SHORT_COMMIT="$(echo $COMMIT | cut -b -7 )"
   # http://docs.shippable.com/ci/shippableyml/#post_ci
   post_ci:
     - docker run --rm --privileged multiarch/qemu-user-static:register --reset
