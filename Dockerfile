@@ -4,6 +4,7 @@ FROM hypriot/rpi-python:2.7.3
 MAINTAINER craig
 
 ARG git_commit
+ARG version
 
 RUN apt-get update && \
     apt-get -y install vim python-twisted python-pip gcc && \
@@ -26,6 +27,7 @@ RUN chown -R pi /home/pi/
 USER pi
 
 LABEL git-commit=$git_commit
+LABEL version=$version
 
 #RUN chown -R pi /home/pi/
 EXPOSE 5000
