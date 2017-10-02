@@ -7,11 +7,15 @@ import socket
 import datetime
 import thread
 from time import sleep
-from flask import Flask, jsonify
+from flask import Flask, jsonify, Response
 from collections import deque
 
-app = Flask(__name__)
+from prometheus_client import start_http_server, Summary, MetricsHandler, Counter, generate_latest
 
+CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
+
+app = Flask(__name__)
+c = Counter('sample_submitted', 'Number of runs of the process_request method', ['sensor_key'])
 #some optional logging choices
 try:
     from logentries import LogentriesHandler
@@ -165,6 +169,8 @@ def on_message(client, userdata, msg):
     if is_ok_to_accept_reading(key):
         temp = float(msgElements[2])
         log.debug("temp: '%f'" % temp)
+        label_dict = {"sensor_key": key}
+        c.labels(**label_dict).inc()
         sensor = get_sensor(key, 'temperature')
         if sensor is not None:
             topic = deviceIdtoTopic[key]
@@ -196,6 +202,12 @@ def flaskThread():
      app.run(host='0.0.0.0')
 
 thread.start_new_thread(flaskThread,())
+
+
+@app.route('/metrics')
+def metrics():
+    return Response(generate_latest(), mimetype=CONTENT_TYPE_LATEST)
+
 
 client = mqtt.Client()
 client.on_connect = on_connect
