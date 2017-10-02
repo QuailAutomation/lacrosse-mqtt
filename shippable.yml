@@ -12,7 +12,7 @@ branches:
 # full list http://docs.shippable.com/ci/advancedOptions/environmentVariables/
 env:
   global:
-    - DOCKER_REPO=rpi-jeelink-mqtt
+    - DOCKER_REPO=rpi-lacrosse-mqtt
     - DOCKER_ACC=craigham # {account name}
     - CURRENT_VERSION=0.1.$BUILD_NUMBER
 
