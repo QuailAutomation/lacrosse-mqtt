@@ -3,3 +3,4 @@ paho-mqtt
 graypy
 numpy
 flask
+prometheus_client

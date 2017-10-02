@@ -9,7 +9,6 @@ import thread
 from time import sleep
 from flask import Flask, jsonify, Response
 from collections import deque
-
 from prometheus_client import start_http_server, Summary, MetricsHandler, Counter, generate_latest
 
 CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
