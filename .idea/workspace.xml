@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="38ec2edd-173f-43c1-998b-835f7e8cb0eb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shippable.yml" afterPath="$PROJECT_DIR$/shippable.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/monitor-mqtt.py" afterPath="$PROJECT_DIR$/monitor-mqtt.py" />
     </list>
     <ignored path="docker-lacrosse-mqtt.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -19,7 +19,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/docker-lacrosse-mqtt$Unittests_in_test_tempSensor.coverage" NAME="Unittests in test_tempSensor Coverage Results" MODIFIED="1481907956247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/docker-lacrosse-mqtt$Unittest_TestTempSensor_test_clears_samples.coverage" NAME="Unittest TestTempSensor.test_clears_samples Coverage Results" MODIFIED="1481436044503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/docker-lacrosse-mqtt$monitor_mqtt.coverage" NAME="monitor-mqtt Coverage Results" MODIFIED="1506985746992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/docker-lacrosse-mqtt$monitor_mqtt.coverage" NAME="monitor-mqtt Coverage Results" MODIFIED="1507054440438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/docker-lacrosse-mqtt$socket.coverage" NAME="socket Coverage Results" MODIFIED="1494520364056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7" />
     <SUITE FILE_PATH="coverage/docker-lacrosse-mqtt$Unittests_in_TestTempSensor.coverage" NAME="Unittests in TestTempSensor Coverage Results" MODIFIED="1481435964657" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/docker-lacrosse-mqtt$Unittest_TestTempSensor_test_detect_outlier.coverage" NAME="Unittest TestTempSensor.test_detect_outlier Coverage Results" MODIFIED="1481436032156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -73,17 +73,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="monitor-mqtt.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="monitor-mqtt.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="22" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="22" />
+            <state relative-caret-position="433">
+              <caret line="184" column="40" selection-start-line="184" selection-start-column="40" selection-end-line="184" selection-end-column="40" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="client.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/python/virtual-env/docker-lacrosse-mqtt/lib/python2.7/site-packages/paho/mqtt/client.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1230">
+              <caret line="1176" column="0" selection-start-line="1176" selection-start-column="0" selection-end-line="1176" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shippable.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="shippable.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shippable.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="247">
@@ -119,9 +131,9 @@
         <option value="$PROJECT_DIR$/sensors.py" />
         <option value="$PROJECT_DIR$/sensors-test.json" />
         <option value="$PROJECT_DIR$/Dockerfile" />
-        <option value="$PROJECT_DIR$/monitor-mqtt.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/shippable.yml" />
+        <option value="$PROJECT_DIR$/monitor-mqtt.py" />
       </list>
     </option>
   </component>
@@ -763,7 +775,14 @@
       <option name="project" value="LOCAL" />
       <updated>1506983079783</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="fix so tagging correctly the  docker image">
+      <created>1506985885294</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1506985885294</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -861,7 +880,8 @@
     <MESSAGE value="add version label build arg" />
     <MESSAGE value="first support for prometheus, counting submitted samples" />
     <MESSAGE value="add prometheus_client to requirements for docker image" />
-    <option name="LAST_COMMIT_MESSAGE" value="add prometheus_client to requirements for docker image" />
+    <MESSAGE value="fix so tagging correctly the  docker image" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix so tagging correctly the  docker image" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -873,7 +893,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/monitor-mqtt.py</url>
-          <line>191</line>
+          <line>202</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
@@ -925,7 +945,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1935">
           <caret line="136" column="25" selection-start-line="136" selection-start-column="25" selection-end-line="136" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -979,7 +1001,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1935">
           <caret line="136" column="25" selection-start-line="136" selection-start-column="25" selection-end-line="136" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1023,7 +1047,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1068,7 +1094,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1890">
           <caret line="133" column="59" selection-start-line="133" selection-start-column="59" selection-end-line="133" selection-end-column="59" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1183,13 +1211,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/python/virtual-env/docker-lacrosse-mqtt/lib/python2.7/site-packages/paho/mqtt/client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17404">
-          <caret line="920" column="0" selection-start-line="920" selection-start-column="0" selection-end-line="920" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/socket.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4389">
@@ -1236,19 +1257,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shippable.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
           <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/python/virtual-env/docker-lacrosse-mqtt/lib/python2.7/site-packages/paho/mqtt/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1230">
+          <caret line="1176" column="0" selection-start-line="1176" selection-start-column="0" selection-end-line="1176" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="184" column="40" selection-start-line="184" selection-start-column="40" selection-end-line="184" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

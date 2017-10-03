@@ -14,7 +14,14 @@ from prometheus_client import start_http_server, Summary, MetricsHandler, Counte
 CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
 
 app = Flask(__name__)
-c = Counter('sample_submitted', 'Number of runs of the process_request method', ['sensor_key'])
+SENSOR_SAMPLES = Counter('sample_submitted', 'Number of samples processed', ['sensor_key'])
+INVALID_SENSOR_SAMPLES = Counter('invalid_sample_submitted', 'Number unknown key samples processed', ['sensor_key'])
+MQTT_SUBMIT_DURATION = Summary('mqtt_submit_duration',
+                           'Latency of submitting to mqtt')
+MQTT_EXCEPTIONS = Counter('mqtt_submit_exceptions_total',
+                             'Exceptions thrown submitting to mqtt')
+
+
 #some optional logging choices
 try:
     from logentries import LogentriesHandler
@@ -134,9 +141,12 @@ def get_sensor(key, type):
 def write_to_mqtt(topic, value):
     log.info('Writing to topic: %s, val: %s' % (topic, str(value)))
     try:
+        startTime = time.time()
         client.publish(topic, str(value))
+        MQTT_SUBMIT_DURATION.observe(time.time() - startTime)
     except socket.error:
         log.warn('Could not connect to mosquitto')
+        MQTT_EXCEPTIONS.inc()
         client.connect(mosquitto_url, 1883, keepalive=1000)
 
 
@@ -169,9 +179,9 @@ def on_message(client, userdata, msg):
         temp = float(msgElements[2])
         log.debug("temp: '%f'" % temp)
         label_dict = {"sensor_key": key}
-        c.labels(**label_dict).inc()
         sensor = get_sensor(key, 'temperature')
         if sensor is not None:
+            SENSOR_SAMPLES.labels(**label_dict).inc()
             topic = deviceIdtoTopic[key]
             submit_sample(sensor, temp, topic, 'temperature')
             log.debug('Submitted temperature reading. key=%s value=%f' % (key, temp))
@@ -180,7 +190,8 @@ def on_message(client, userdata, msg):
             if humidity < 99:
                 log.debug("humidity: '%f'" % humidity)
                 submit_sample(sensor, humidity, topic, 'humidity')
-
+        else:
+            INVALID_SENSOR_SAMPLES.labels(**label_dict).inc()
 class SetEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, TempSensor):
