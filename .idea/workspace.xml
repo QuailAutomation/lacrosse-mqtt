@@ -4,6 +4,7 @@
     <list default="true" id="38ec2edd-173f-43c1-998b-835f7e8cb0eb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/monitor-mqtt.py" afterPath="$PROJECT_DIR$/monitor-mqtt.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sensors.py" afterPath="$PROJECT_DIR$/sensors.py" />
     </list>
     <ignored path="docker-lacrosse-mqtt.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -19,7 +20,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/docker-lacrosse-mqtt$Unittests_in_test_tempSensor.coverage" NAME="Unittests in test_tempSensor Coverage Results" MODIFIED="1481907956247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/docker-lacrosse-mqtt$Unittest_TestTempSensor_test_clears_samples.coverage" NAME="Unittest TestTempSensor.test_clears_samples Coverage Results" MODIFIED="1481436044503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/docker-lacrosse-mqtt$monitor_mqtt.coverage" NAME="monitor-mqtt Coverage Results" MODIFIED="1507074572278" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/docker-lacrosse-mqtt$monitor_mqtt.coverage" NAME="monitor-mqtt Coverage Results" MODIFIED="1507140140752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/docker-lacrosse-mqtt$socket.coverage" NAME="socket Coverage Results" MODIFIED="1494520364056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7" />
     <SUITE FILE_PATH="coverage/docker-lacrosse-mqtt$Unittests_in_TestTempSensor.coverage" NAME="Unittests in TestTempSensor Coverage Results" MODIFIED="1481435964657" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/docker-lacrosse-mqtt$Unittest_TestTempSensor_test_detect_outlier.coverage" NAME="Unittest TestTempSensor.test_detect_outlier Coverage Results" MODIFIED="1481436032156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -76,11 +77,21 @@
       <file leaf-file-name="monitor-mqtt.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="181" column="39" selection-start-line="181" selection-start-column="39" selection-end-line="181" selection-end-column="39" />
+            <state relative-caret-position="285">
+              <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sensors.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sensors.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="566">
+              <caret line="72" column="29" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -128,11 +139,11 @@
         <option value="$PROJECT_DIR$/temperatureprocessing.py" />
         <option value="$PROJECT_DIR$/sensors.json" />
         <option value="$PROJECT_DIR$/test_tempSensor.py" />
-        <option value="$PROJECT_DIR$/sensors.py" />
         <option value="$PROJECT_DIR$/sensors-test.json" />
         <option value="$PROJECT_DIR$/Dockerfile" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/shippable.yml" />
+        <option value="$PROJECT_DIR$/sensors.py" />
         <option value="$PROJECT_DIR$/monitor-mqtt.py" />
       </list>
     </option>
@@ -796,7 +807,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507074671564</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="remove job as a label, seems already there from yml file">
+      <created>1507075601401</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1507075601401</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -897,7 +915,8 @@
     <MESSAGE value="fix so tagging correctly the  docker image" />
     <MESSAGE value="add some more instrumentation" />
     <MESSAGE value="include job, and topic as label for submitted samples" />
-    <option name="LAST_COMMIT_MESSAGE" value="include job, and topic as label for submitted samples" />
+    <MESSAGE value="remove job as a label, seems already there from yml file" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove job as a label, seems already there from yml file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -907,14 +926,14 @@
           <line>24</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
+        <line-breakpoint type="python-line">
           <url>file://$PROJECT_DIR$/monitor-mqtt.py</url>
-          <line>203</line>
+          <line>208</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/monitor-mqtt.py</url>
-          <line>174</line>
+          <line>177</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
@@ -1239,13 +1258,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sensors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="37" column="22" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/SocketServer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2850">
@@ -1294,10 +1306,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sensors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="72" column="29" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="181" column="39" selection-start-line="181" selection-start-column="39" selection-end-line="181" selection-end-column="39" />
+        <state relative-caret-position="285">
+          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

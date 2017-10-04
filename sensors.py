@@ -70,5 +70,8 @@ class TempSensor:
         for _ in range(count):
             self.last_10_readings.popleft()
 
+    def number_samples(self):
+        return len(self.last_10_readings)
+
     def toJSON(self):
         return {'id': self.id,'min':self.min,'max':self.max,'currentnumberrejections':self.current_number_sample_rejections,'readings':json.dumps(list(self.last_10_readings))}

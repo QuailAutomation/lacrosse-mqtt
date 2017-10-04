@@ -9,17 +9,20 @@ import thread
 from time import sleep
 from flask import Flask, jsonify, Response
 from collections import deque
-from prometheus_client import start_http_server, Summary, MetricsHandler, Counter, generate_latest
+from prometheus_client import start_http_server, Summary, MetricsHandler, Counter, Gauge, generate_latest
 
 CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
 
 app = Flask(__name__)
-SENSOR_SAMPLES = Counter('sample_submitted', 'Number of samples processed', ['sensor_key','topic'])
-INVALID_SENSOR_SAMPLES = Counter('invalid_sample_submitted', 'Number unknown key samples processed', ['sensor_key','topic'])
+
+# instrumentation
+SENSOR_SAMPLES = Counter('samples_submitted', 'Number of samples processed', ['sensor_key','topic'])
+INVALID_SENSOR_SAMPLES = Counter('samples_invalid_submitted', 'Number unknown key samples processed', ['sensor_key','topic'])
 MQTT_SUBMIT_DURATION = Summary('mqtt_submit_duration',
                            'Latency of submitting to mqtt')
 MQTT_EXCEPTIONS = Counter('mqtt_submit_exceptions_total',
                              'Exceptions thrown submitting to mqtt')
+CURRENT_NUMBER_SAMPLES = Gauge('samples_current_number', 'Current number samples for averaging', ['sensor_key', 'type'])
 
 
 #some optional logging choices
@@ -185,12 +188,14 @@ def on_message(client, userdata, msg):
             SENSOR_SAMPLES.labels(**label_dict).inc()
             topic = deviceIdtoTopic[key]
             submit_sample(sensor, temp, topic, 'temperature')
+            CURRENT_NUMBER_SAMPLES.labels(sensor_key =key, type= 'temperature').set(sensor.number_samples())
             log.debug('Submitted temperature reading. key=%s value=%f' % (key, temp))
             humidity = float(msgElements[3])
             sensor = get_sensor(key, 'humidity')
             if humidity < 99:
                 log.debug("humidity: '%f'" % humidity)
                 submit_sample(sensor, humidity, topic, 'humidity')
+                CURRENT_NUMBER_SAMPLES.labels(sensor_key =key, type= 'humidity').set(sensor.number_samples())
         else:
             INVALID_SENSOR_SAMPLES.labels(**label_dict).inc()
 class SetEncoder(json.JSONEncoder):
