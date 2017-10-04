@@ -76,8 +76,8 @@
       <file leaf-file-name="monitor-mqtt.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="233" column="0" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
+            <state relative-caret-position="384">
+              <caret line="181" column="39" selection-start-line="181" selection-start-column="39" selection-end-line="181" selection-end-column="39" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -789,7 +789,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507054487097</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="include job, and topic as label for submitted samples">
+      <created>1507074671564</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1507074671564</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -889,7 +896,8 @@
     <MESSAGE value="add prometheus_client to requirements for docker image" />
     <MESSAGE value="fix so tagging correctly the  docker image" />
     <MESSAGE value="add some more instrumentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="add some more instrumentation" />
+    <MESSAGE value="include job, and topic as label for submitted samples" />
+    <option name="LAST_COMMIT_MESSAGE" value="include job, and topic as label for submitted samples" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1288,8 +1296,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="233" column="0" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
+        <state relative-caret-position="384">
+          <caret line="181" column="39" selection-start-line="181" selection-start-column="39" selection-end-line="181" selection-end-column="39" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

@@ -14,8 +14,8 @@ from prometheus_client import start_http_server, Summary, MetricsHandler, Counte
 CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
 
 app = Flask(__name__)
-SENSOR_SAMPLES = Counter('sample_submitted', 'Number of samples processed', ['sensor_key','job','topic'])
-INVALID_SENSOR_SAMPLES = Counter('invalid_sample_submitted', 'Number unknown key samples processed', ['sensor_key','job','topic'])
+SENSOR_SAMPLES = Counter('sample_submitted', 'Number of samples processed', ['sensor_key','topic'])
+INVALID_SENSOR_SAMPLES = Counter('invalid_sample_submitted', 'Number unknown key samples processed', ['sensor_key','topic'])
 MQTT_SUBMIT_DURATION = Summary('mqtt_submit_duration',
                            'Latency of submitting to mqtt')
 MQTT_EXCEPTIONS = Counter('mqtt_submit_exceptions_total',
@@ -179,7 +179,7 @@ def on_message(client, userdata, msg):
     if is_ok_to_accept_reading(key):
         temp = float(msgElements[2])
         log.debug("temp: '%f'" % temp)
-        label_dict = {"sensor_key": key,"job": "lacrosse","topic":msg.topic}
+        label_dict = {"sensor_key": key,"topic":msg.topic}
         sensor = get_sensor(key, 'temperature')
         if sensor is not None:
             SENSOR_SAMPLES.labels(**label_dict).inc()
