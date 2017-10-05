@@ -6,13 +6,13 @@ MAINTAINER craig
 ARG git_commit
 ARG version
 
-#RUN apt-get update && \
-#    apt-get -y install vim python-twisted python-pip gcc && \
-#    apt-get clean
+RUN apt-get update && \
+    apt-get -y install python-pip gcc && \
+    apt-get clean
 
 # Install Python requirements
 ADD requirements.txt /tmp/requirements.txt
-#RUN pip install -r /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
 
 #ENV TZ=America/Los_Angeles
 #RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
