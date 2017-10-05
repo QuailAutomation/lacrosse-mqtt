@@ -6,16 +6,15 @@ import logging
 import socket
 import datetime
 import thread
-from time import sleep
 from flask import Flask, jsonify, Response
-from collections import deque
-from prometheus_client import start_http_server, Summary, MetricsHandler, Counter, Gauge, generate_latest
+from prometheus_client import Summary, Counter, Gauge, generate_latest
+from sensors import TempSensor
 
-CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
 
 app = Flask(__name__)
 
 # instrumentation
+CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
 SENSOR_SAMPLES = Counter('samples_submitted', 'Number of samples processed', ['sensor_key','topic'])
 INVALID_SENSOR_SAMPLES = Counter('samples_invalid_submitted', 'Number unknown key samples processed', ['sensor_key','topic'])
 MQTT_SUBMIT_DURATION = Summary('mqtt_submit_duration',
@@ -30,13 +29,11 @@ try:
     from logentries import LogentriesHandler
 except ImportError:
     pass
+
 try:
     import graypy
 except ImportError:
     pass
-
-
-from sensors import TempSensor
 
 
 config_file = os.getenv('SENSORCONFIGFILE', './sensors.json')

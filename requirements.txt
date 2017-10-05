@@ -1,6 +1,6 @@
 pyserial
 paho-mqtt
 graypy
-numpy
+#numpy
 flask
 prometheus_client
