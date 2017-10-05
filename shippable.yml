@@ -26,7 +26,7 @@ build:
     - wget https://5028-88013053-gh.circle-artifacts.com/1/work/build/docker-linux-amd64
     - mv docker-linux-amd64 docker
     - chmod +x docker
-    - ./docker -D manifest create "$DOCKER_ACC/$DOCKER_REPO" "$DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION-stef"
+    - ./docker -D manifest create "$DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION-stef" "$DOCKER_ACC/$DOCKER_REPO"
 #    - docker tag $DOCKER_ACC/$DOCKER_REPO $DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION
     - docker push $DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION-stef
 #    - docker push $DOCKER_ACC/$DOCKER_REPO
