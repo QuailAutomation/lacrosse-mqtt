@@ -108,8 +108,8 @@
       <file leaf-file-name="shippable.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/shippable.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="33" column="102" selection-start-line="33" selection-start-column="102" selection-end-line="33" selection-end-column="102" />
+            <state relative-caret-position="319">
+              <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -869,7 +869,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507226753086</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="try removing numby as a requirement">
+      <created>1507228235037</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1507228235037</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1366,8 +1373,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/shippable.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="33" column="102" selection-start-line="33" selection-start-column="102" selection-end-line="33" selection-end-column="102" />
+        <state relative-caret-position="319">
+          <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
           <folding />
         </state>
       </provider>
