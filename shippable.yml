@@ -27,8 +27,10 @@ build:
     - mv docker-linux-amd64 docker
     - chmod +x docker
     - ./docker -D manifest create "$DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION-stef" "$DOCKER_ACC/$DOCKER_REPO"
+    - ./docker manifest annotate "$DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION-stef" "$DOCKER_ACC/$DOCKER_REPO" --os linux --arch arm
+    - ./docker manifest push "$DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION-stef"
 #    - docker tag $DOCKER_ACC/$DOCKER_REPO $DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION
-    - docker push $DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION-stef
+#    - docker push $DOCKER_ACC/$DOCKER_REPO:$CURRENT_VERSION-stef
 #    - docker push $DOCKER_ACC/$DOCKER_REPO
 
 # Integrations are used to connect external resources to CI
