@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="38ec2edd-173f-43c1-998b-835f7e8cb0eb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/monitor-mqtt.py" afterPath="$PROJECT_DIR$/monitor-mqtt.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shippable.yml" afterPath="$PROJECT_DIR$/shippable.yml" />
     </list>
     <ignored path="docker-lacrosse-mqtt.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,7 +73,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="monitor-mqtt.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="monitor-mqtt.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-3823">
@@ -106,11 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shippable.yml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="shippable.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/shippable.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="34" column="61" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="61" />
+            <state relative-caret-position="471">
+              <caret line="33" column="102" selection-start-line="33" selection-start-column="102" selection-end-line="33" selection-end-column="102" />
               <folding />
             </state>
           </provider>
@@ -141,10 +140,10 @@
         <option value="$PROJECT_DIR$/test_tempSensor.py" />
         <option value="$PROJECT_DIR$/sensors-test.json" />
         <option value="$PROJECT_DIR$/sensors.py" />
-        <option value="$PROJECT_DIR$/shippable.yml" />
         <option value="$PROJECT_DIR$/Dockerfile" />
         <option value="$PROJECT_DIR$/monitor-mqtt.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/shippable.yml" />
       </list>
     </option>
   </component>
@@ -863,7 +862,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507226265754</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="try removing numby as a requirement">
+      <created>1507226753086</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1507226753086</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -941,7 +947,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="set up root sensor so other classes's use gelf stuff" />
     <MESSAGE value="remove sleep, and remove old file" />
     <MESSAGE value="put logger call in spot which is more appropriate" />
     <MESSAGE value="if we reject 4 submitted samples in a row because different from average, we clear our previous readings in case we started off with a bad reading." />
@@ -966,7 +971,8 @@
     <MESSAGE value="add instrumentation for # samples currently held" />
     <MESSAGE value="testing manually change manifest for docker bug" />
     <MESSAGE value="docker images built wihtin CI should now be deployable on arm swarm" />
-    <option name="LAST_COMMIT_MESSAGE" value="docker images built wihtin CI should now be deployable on arm swarm" />
+    <MESSAGE value="try removing numby as a requirement" />
+    <option name="LAST_COMMIT_MESSAGE" value="try removing numby as a requirement" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1316,14 +1322,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shippable.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="34" column="61" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -1362,6 +1360,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3823">
           <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shippable.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="33" column="102" selection-start-line="33" selection-start-column="102" selection-end-line="33" selection-end-column="102" />
           <folding />
         </state>
       </provider>
