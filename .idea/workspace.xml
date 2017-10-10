@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="38ec2edd-173f-43c1-998b-835f7e8cb0eb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shippable.yml" afterPath="$PROJECT_DIR$/shippable.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/monitor-mqtt.py" afterPath="$PROJECT_DIR$/monitor-mqtt.py" />
     </list>
     <ignored path="docker-lacrosse-mqtt.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,12 +73,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="monitor-mqtt.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="monitor-mqtt.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3823">
-              <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
-              <folding />
+            <state relative-caret-position="342">
+              <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,7 +88,7 @@
       <file leaf-file-name="sensors.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sensors.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1368">
+            <state relative-caret-position="1311">
               <caret line="72" column="29" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
@@ -98,17 +100,17 @@
       <file leaf-file-name="client.py" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/python/virtual-env/docker-lacrosse-mqtt/lib/python2.7/site-packages/paho/mqtt/client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1230">
+            <state relative-caret-position="22268">
               <caret line="1176" column="0" selection-start-line="1176" selection-start-column="0" selection-end-line="1176" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shippable.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="shippable.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shippable.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
+            <state relative-caret-position="475">
               <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
               <folding />
             </state>
@@ -141,9 +143,9 @@
         <option value="$PROJECT_DIR$/sensors-test.json" />
         <option value="$PROJECT_DIR$/sensors.py" />
         <option value="$PROJECT_DIR$/Dockerfile" />
-        <option value="$PROJECT_DIR$/monitor-mqtt.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/shippable.yml" />
+        <option value="$PROJECT_DIR$/monitor-mqtt.py" />
       </list>
     </option>
   </component>
@@ -876,7 +878,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507228235037</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="push intermediate image for manifest manipulation">
+      <created>1507228524747</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1507228524747</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -921,25 +930,25 @@
     <frame x="-483" y="-1336" width="1736" height="1139" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23494688" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23730814" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912534" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912534" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3600764" sideWeight="0.50472254" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912534" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13753581" sideWeight="0.49527746" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3600764" sideWeight="0.49527746" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32853284" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42311364" sideWeight="0.49763873" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3600764" sideWeight="0.49527746" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32822362" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42311364" sideWeight="0.49763873" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -954,7 +963,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="remove sleep, and remove old file" />
     <MESSAGE value="put logger call in spot which is more appropriate" />
     <MESSAGE value="if we reject 4 submitted samples in a row because different from average, we clear our previous readings in case we started off with a bad reading." />
     <MESSAGE value="reduce precision of sma to 1" />
@@ -979,7 +987,8 @@
     <MESSAGE value="testing manually change manifest for docker bug" />
     <MESSAGE value="docker images built wihtin CI should now be deployable on arm swarm" />
     <MESSAGE value="try removing numby as a requirement" />
-    <option name="LAST_COMMIT_MESSAGE" value="try removing numby as a requirement" />
+    <MESSAGE value="push intermediate image for manifest manipulation" />
+    <option name="LAST_COMMIT_MESSAGE" value="push intermediate image for manifest manipulation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1048,7 +1057,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1935">
           <caret line="136" column="25" selection-start-line="136" selection-start-column="25" selection-end-line="136" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1102,7 +1113,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1935">
           <caret line="136" column="25" selection-start-line="136" selection-start-column="25" selection-end-line="136" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1146,7 +1159,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1191,7 +1206,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1890">
           <caret line="133" column="59" selection-start-line="133" selection-start-column="59" selection-end-line="133" selection-end-column="59" />
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1323,7 +1340,7 @@
     </entry>
     <entry file="file://$USER_HOME$/python/virtual-env/docker-lacrosse-mqtt/lib/python2.7/site-packages/paho/mqtt/client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1230">
+        <state relative-caret-position="22268">
           <caret line="1176" column="0" selection-start-line="1176" selection-start-column="0" selection-end-line="1176" selection-end-column="0" />
           <folding />
         </state>
@@ -1355,7 +1372,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sensors.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1368">
+        <state relative-caret-position="1311">
           <caret line="72" column="29" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
@@ -1363,19 +1380,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
+    <entry file="file://$PROJECT_DIR$/shippable.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3823">
-          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+        <state relative-caret-position="475">
+          <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shippable.yml">
+    <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
-          <folding />
+        <state relative-caret-position="342">
+          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

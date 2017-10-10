@@ -15,13 +15,13 @@ app = Flask(__name__)
 
 # instrumentation
 CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
-SENSOR_SAMPLES = Counter('samples_submitted', 'Number of samples processed', ['sensor_key','topic'])
-INVALID_SENSOR_SAMPLES = Counter('samples_invalid_submitted', 'Number unknown key samples processed', ['sensor_key','topic'])
-MQTT_SUBMIT_DURATION = Summary('mqtt_submit_duration',
+SENSOR_SAMPLES = Counter('lacrosse_samples_submitted', 'Number of samples processed', ['sensor_key','topic'])
+INVALID_SENSOR_SAMPLES = Counter('lacrosse_samples_invalid_submitted', 'Number unknown key samples processed', ['sensor_key','topic'])
+MQTT_SUBMIT_DURATION = Summary('lacrosse_mqtt_submit_duration',
                            'Latency of submitting to mqtt')
-MQTT_EXCEPTIONS = Counter('mqtt_submit_exceptions_total',
+MQTT_EXCEPTIONS = Counter('lacrosse_mqtt_submit_exceptions_total',
                              'Exceptions thrown submitting to mqtt')
-CURRENT_NUMBER_SAMPLES = Gauge('samples_current_number', 'Current number samples for averaging', ['sensor_key', 'type'])
+CURRENT_NUMBER_SAMPLES = Gauge('lacrosse_samples_current_number', 'Current number samples for averaging', ['sensor_key', 'type'])
 
 
 #some optional logging choices
