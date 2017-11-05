@@ -5,6 +5,7 @@ import json
 
 log = logging.getLogger(__name__)
 
+
 class TempSensor:
     max_allowable_difference_from_average = 4
     # when we start accepting samples we are vulnerable to accepting a bad value early, which will
@@ -12,8 +13,9 @@ class TempSensor:
     # so, if we reject 4 samples consecutively, we will flush the readings and start again
     current_number_sample_rejections = 0
 
-    def __init__(self,id, min, max, max_difference_from_average=4):
+    def __init__(self, id, location, min, max,max_difference_from_average=4):
         self.id = id
+        self.location = location
         self.min = min
         self.max = max
         log.info('Sensor created: Min: %s, Max: %s' % (min, max))

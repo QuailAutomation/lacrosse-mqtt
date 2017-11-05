@@ -15,13 +15,13 @@ app = Flask(__name__)
 
 # instrumentation
 CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
-SENSOR_SAMPLES = Counter('lacrosse_samples_submitted', 'Number of samples processed', ['sensor_key','topic'])
+SENSOR_SAMPLES = Counter('lacrosse_samples_submitted', 'Number of samples processed', ['sensor_key','topic','location'])
 INVALID_SENSOR_SAMPLES = Counter('lacrosse_samples_invalid_submitted', 'Number unknown key samples processed', ['sensor_key','topic'])
 MQTT_SUBMIT_DURATION = Summary('lacrosse_mqtt_submit_duration',
                            'Latency of submitting to mqtt')
 MQTT_EXCEPTIONS = Counter('lacrosse_mqtt_submit_exceptions_total',
                              'Exceptions thrown submitting to mqtt')
-CURRENT_NUMBER_SAMPLES = Gauge('lacrosse_samples_current_number', 'Current number samples for averaging', ['sensor_key', 'type'])
+CURRENT_NUMBER_SAMPLES = Gauge('lacrosse_samples_current_number', 'Current number samples for averaging', ['sensor_key', 'type','location'])
 
 
 #some optional logging choices
@@ -87,10 +87,11 @@ sensorConfig = config['sensors']
 for key in sensorConfig:
     log.info("watching for sensor with id: %s" % key)
     topic = sensorConfig[key]['mqtt-topic']
+    location = sensorConfig[key]['location']
     log.info('Topic: %s' % topic)
     min = sensorConfig[key]['valid-range']['min']
-    device_id_to_temp_sensor_map[key] = TempSensor(key,sensorConfig[key]['valid-range']['min'], sensorConfig[key]['valid-range']['max'])
-    device_id_to_humidity_sensor_map[key] = TempSensor(id=key,min=0, max=97, max_difference_from_average=15)
+    device_id_to_temp_sensor_map[key] = TempSensor(key,location,sensorConfig[key]['valid-range']['min'], sensorConfig[key]['valid-range']['max'])
+    device_id_to_humidity_sensor_map[key] = TempSensor(id=key,location=location,min=0, max=97, max_difference_from_average=15)
     deviceIdtoTopic[key] = topic
 
 
@@ -142,7 +143,7 @@ def write_to_mqtt(topic, value):
     log.info('Writing to topic: %s, val: %s' % (topic, str(value)))
     try:
         startTime = time.time()
-        client.publish(topic, str(value))
+       # client.publish(topic, str(value))
         MQTT_SUBMIT_DURATION.observe(time.time() - startTime)
     except socket.error:
         log.warn('Could not connect to mosquitto')
@@ -182,17 +183,18 @@ def on_message(client, userdata, msg):
         label_dict = {"sensor_key": key,"topic":msg.topic}
         sensor = get_sensor(key, 'temperature')
         if sensor is not None:
+            label_dict['location'] = sensor.location
             SENSOR_SAMPLES.labels(**label_dict).inc()
             topic = deviceIdtoTopic[key]
             submit_sample(sensor, temp, topic, 'temperature')
-            CURRENT_NUMBER_SAMPLES.labels(sensor_key =key, type= 'temperature').set(sensor.number_samples())
+            CURRENT_NUMBER_SAMPLES.labels(sensor_key=key, type= 'temperature',location=sensor.location).set(sensor.number_samples())
             log.debug('Submitted temperature reading. key=%s value=%f' % (key, temp))
             humidity = float(msgElements[3])
             sensor = get_sensor(key, 'humidity')
             if humidity < 99:
                 log.debug("humidity: '%f'" % humidity)
                 submit_sample(sensor, humidity, topic, 'humidity')
-                CURRENT_NUMBER_SAMPLES.labels(sensor_key =key, type= 'humidity').set(sensor.number_samples())
+                CURRENT_NUMBER_SAMPLES.labels(sensor_key=key, type='humidity', location=sensor.location).set(sensor.number_samples())
         else:
             INVALID_SENSOR_SAMPLES.labels(**label_dict).inc()
 class SetEncoder(json.JSONEncoder):
