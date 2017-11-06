@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="38ec2edd-173f-43c1-998b-835f7e8cb0eb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Dockerfile" afterPath="$PROJECT_DIR$/Dockerfile" />
+    <list default="true" id="38ec2edd-173f-43c1-998b-835f7e8cb0eb" name="Default" comment="add index switch to pip run">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/monitor-mqtt.py" afterPath="$PROJECT_DIR$/monitor-mqtt.py" />
     </list>
     <ignored path="docker-lacrosse-mqtt.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,7 +33,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="266">
@@ -63,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="monitor-mqtt.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="monitor-mqtt.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="18" column="132" selection-start-line="18" selection-start-column="132" selection-end-line="18" selection-end-column="132" />
+            <state relative-caret-position="199">
+              <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -118,36 +118,6 @@
         </entry>
       </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/temperatureprocessing.py" />
-        <option value="$PROJECT_DIR$/test_tempSensor.py" />
-        <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/shippable.yml" />
-        <option value="$PROJECT_DIR$/sensors.py" />
-        <option value="$PROJECT_DIR$/sensors.json" />
-        <option value="$PROJECT_DIR$/sensors-test.json" />
-        <option value="$PROJECT_DIR$/monitor-mqtt.py" />
-        <option value="$PROJECT_DIR$/Dockerfile" />
-      </list>
-    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -209,124 +179,7 @@
       </pane>
     </panes>
   </component>
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../nhlmonitorgames" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Python.monitor-mqtt">
-    <configuration default="false" name="monitor-mqtt" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="SENSORCONFIGFILE" value="sensors-test.json" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="docker-lacrosse-mqtt" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/monitor-mqtt.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests in test_tempSensor" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="docker-lacrosse-mqtt" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_tempSensor.py" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest TestTempSensor.test_detect_outlier" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="docker-lacrosse-mqtt" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_tempSensor.py" />
-      <option name="CLASS_NAME" value="TestTempSensor" />
-      <option name="METHOD_NAME" value="test_detect_outlier" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest TestTempSensor.test_clears_samples" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="docker-lacrosse-mqtt" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_tempSensor.py" />
-      <option name="CLASS_NAME" value="TestTempSensor" />
-      <option name="METHOD_NAME" value="test_clears_samples" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="socket" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="docker-lacrosse-mqtt" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/socket.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager">
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -409,16 +262,7 @@
       <module name="docker-lacrosse-mqtt" />
       <method />
     </configuration>
-    <configuration default="true" type="docker-deploy" factoryName="Docker Deployment">
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -538,399 +382,12 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.monitor-mqtt" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_tempSensor" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest TestTempSensor.test_detect_outlier" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TestTempSensor.test_clears_samples" />
-      <item index="4" class="java.lang.String" itemvalue="Python.socket" />
-    </list>
-    <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.monitor-mqtt" />
-        <item index="1" class="java.lang.String" itemvalue="Python.socket" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_tempSensor" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TestTempSensor.test_clears_samples" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest TestTempSensor.test_detect_outlier" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="38ec2edd-173f-43c1-998b-835f7e8cb0eb" name="Default" comment="" />
-      <created>1479752942566</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1479752942566</updated>
-    </task>
-    <task id="LOCAL-00001" summary="add support for gelf logging">
-      <created>1479753827352</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1479753827352</updated>
-    </task>
-    <task id="LOCAL-00002" summary="hard code localname and facility for gelf logging">
-      <created>1480009383441</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1480009383441</updated>
-    </task>
-    <task id="LOCAL-00003" summary="hard code localname and facility for gelf logging">
-      <created>1480033090555</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1480033090555</updated>
-    </task>
-    <task id="LOCAL-00004" summary="set up root sensor so other classes's use gelf stuff">
-      <created>1480120182843</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1480120182843</updated>
-    </task>
-    <task id="LOCAL-00005" summary="remove sleep, and remove old file">
-      <created>1481338171861</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1481338171861</updated>
-    </task>
-    <task id="LOCAL-00006" summary="put logger call in spot which is more appropriate">
-      <created>1481339452333</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1481339452334</updated>
-    </task>
-    <task id="LOCAL-00007" summary="if we reject 4 submitted samples in a row because different from average, we clear our previous readings in case we started off with a bad reading.">
-      <created>1481436305651</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1481436305651</updated>
-    </task>
-    <task id="LOCAL-00008" summary="reduce precision of sma to 1">
-      <created>1494007503755</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1494007503755</updated>
-    </task>
-    <task id="LOCAL-00009" summary="temperature to 1 decimal place, humidity written at 0 decimal places">
-      <created>1494009368568</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1494009368568</updated>
-    </task>
-    <task id="LOCAL-00010" summary="use round instead of just truncating with string format">
-      <created>1494009605600</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1494009605600</updated>
-    </task>
-    <task id="LOCAL-00011" summary="improve logging, add humidity sensor get">
-      <created>1494535347121</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1494535347121</updated>
-    </task>
-    <task id="LOCAL-00012" summary="attempt to use qemu to get arm builds on shippable">
-      <created>1506019847469</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1506019847469</updated>
-    </task>
-    <task id="LOCAL-00013" summary="make latest container tag accurate">
-      <created>1506022713737</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1506022713737</updated>
-    </task>
-    <task id="LOCAL-00014" summary="fix typo">
-      <created>1506023122475</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1506023122475</updated>
-    </task>
-    <task id="LOCAL-00015" summary="fix typo">
-      <created>1506100236845</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1506100236845</updated>
-    </task>
-    <task id="LOCAL-00016" summary="disable pip for now to speed up builds while testing labeling of docker images">
-      <created>1506446414173</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1506446414173</updated>
-    </task>
-    <task id="LOCAL-00017" summary="tweaks for getting commit hash label on image">
-      <created>1506447338108</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1506447338108</updated>
-    </task>
-    <task id="LOCAL-00018" summary="tweaks for getting commit hash label on image">
-      <created>1506448005888</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1506448005888</updated>
-    </task>
-    <task id="LOCAL-00019" summary="tweaks for getting commit hash label on image">
-      <created>1506449111498</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1506449111498</updated>
-    </task>
-    <task id="LOCAL-00020" summary="tweaks for getting commit hash label on image">
-      <created>1506449597353</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1506449597353</updated>
-    </task>
-    <task id="LOCAL-00021" summary="tweaks for getting commit hash label on image">
-      <created>1506450694969</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1506450694969</updated>
-    </task>
-    <task id="LOCAL-00022" summary="tweaks for getting commit hash label on image">
-      <created>1506450951097</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1506450951097</updated>
-    </task>
-    <task id="LOCAL-00023" summary="tweaks for getting commit hash label on image">
-      <created>1506451379770</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1506451379770</updated>
-    </task>
-    <task id="LOCAL-00024" summary="tweaks for getting commit hash label on image">
-      <created>1506451884540</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1506451884540</updated>
-    </task>
-    <task id="LOCAL-00025" summary="tweaks for getting commit hash label on image">
-      <created>1506452451553</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1506452451553</updated>
-    </task>
-    <task id="LOCAL-00026" summary="tweaks for getting commit hash label on image">
-      <created>1506454958160</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1506454958160</updated>
-    </task>
-    <task id="LOCAL-00027" summary="container labeling now looks like it works, re-enable the whole build again">
-      <created>1506455743842</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1506455743842</updated>
-    </task>
-    <task id="LOCAL-00028" summary="add label for version to image">
-      <created>1506611640319</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1506611640319</updated>
-    </task>
-    <task id="LOCAL-00029" summary="add version label build arg">
-      <created>1506613171069</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1506613171069</updated>
-    </task>
-    <task id="LOCAL-00030" summary="first support for prometheus, counting submitted samples">
-      <created>1506982898818</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1506982898818</updated>
-    </task>
-    <task id="LOCAL-00031" summary="add prometheus_client to requirements for docker image">
-      <created>1506983079783</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1506983079783</updated>
-    </task>
-    <task id="LOCAL-00032" summary="fix so tagging correctly the  docker image">
-      <created>1506985885294</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1506985885294</updated>
-    </task>
-    <task id="LOCAL-00033" summary="add some more instrumentation">
-      <created>1507054487097</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1507054487097</updated>
-    </task>
-    <task id="LOCAL-00034" summary="include job, and topic as label for submitted samples">
-      <created>1507074671564</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1507074671564</updated>
-    </task>
-    <task id="LOCAL-00035" summary="remove job as a label, seems already there from yml file">
-      <created>1507075601401</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1507075601401</updated>
-    </task>
-    <task id="LOCAL-00036" summary="add instrumentation for # samples currently held">
-      <created>1507140199747</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1507140199747</updated>
-    </task>
-    <task id="LOCAL-00037" summary="testing manually change manifest for docker bug">
-      <created>1507222721843</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1507222721843</updated>
-    </task>
-    <task id="LOCAL-00038" summary="testing manually change manifest for docker bug">
-      <created>1507223064983</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1507223064983</updated>
-    </task>
-    <task id="LOCAL-00039" summary="testing manually change manifest for docker bug">
-      <created>1507223489105</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1507223489105</updated>
-    </task>
-    <task id="LOCAL-00040" summary="testing manually change manifest for docker bug">
-      <created>1507223708878</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1507223708878</updated>
-    </task>
-    <task id="LOCAL-00041" summary="testing manually change manifest for docker bug">
-      <created>1507225488506</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1507225488506</updated>
-    </task>
-    <task id="LOCAL-00042" summary="docker images built wihtin CI should now be deployable on arm swarm">
-      <created>1507226265754</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1507226265754</updated>
-    </task>
-    <task id="LOCAL-00043" summary="try removing numby as a requirement">
-      <created>1507226753086</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1507226753086</updated>
-    </task>
-    <task id="LOCAL-00044" summary="try removing numby as a requirement">
-      <created>1507228235037</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1507228235037</updated>
-    </task>
-    <task id="LOCAL-00045" summary="push intermediate image for manifest manipulation">
-      <created>1507228524747</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1507228524747</updated>
-    </task>
-    <task id="LOCAL-00046" summary="add location as label for instrumentation measurements">
-      <created>1509911254848</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1509911254848</updated>
-    </task>
-    <option name="localTasksCounter" value="47" />
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="Unittest_TestTempSensor_test_clears_samples - 2016.12.10 at 20h 03m 23s.xml">
-      <configuration name="Unittest TestTempSensor.test_clears_samples" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittest_TestTempSensor_test_detect_outlier - 2016.12.10 at 20h 00m 32s.xml">
-      <configuration name="Unittest TestTempSensor.test_detect_outlier" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_TestTempSensor - 2016.12.10 at 19h 56m 53s.xml">
-      <configuration name="Unittests in TestTempSensor" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_TestTempSensor - 2016.12.10 at 19h 57m 35s.xml">
-      <configuration name="Unittests in TestTempSensor" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_TestTempSensor - 2016.12.10 at 19h 59m 24s.xml">
-      <configuration name="Unittests in TestTempSensor" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_tempSensor - 2016.12.10 at 19h 55m 54s.xml">
-      <configuration name="Unittests in test_tempSensor" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_tempSensor - 2016.12.10 at 19h 58m 36s.xml">
-      <configuration name="Unittests in test_tempSensor" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_tempSensor - 2016.12.10 at 20h 03m 33s.xml">
-      <configuration name="Unittests in test_tempSensor" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_test_tempSensor - 2016.12.16 at 07h 05m 56s.xml">
-      <configuration name="Unittests in test_tempSensor" configurationId="tests" />
-    </history-entry>
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
@@ -966,37 +423,6 @@
       <collection />
     </option>
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="if we reject 4 submitted samples in a row because different from average, we clear our previous readings in case we started off with a bad reading." />
-    <MESSAGE value="reduce precision of sma to 1" />
-    <MESSAGE value="temperature to 1 decimal place, humidity written at 0 decimal places" />
-    <MESSAGE value="use round instead of just truncating with string format" />
-    <MESSAGE value="improve logging, add humidity sensor get" />
-    <MESSAGE value="attempt to use qemu to get arm builds on shippable" />
-    <MESSAGE value="make latest container tag accurate" />
-    <MESSAGE value="fix typo" />
-    <MESSAGE value="disable pip for now to speed up builds while testing labeling of docker images" />
-    <MESSAGE value="tweaks for getting commit hash label on image" />
-    <MESSAGE value="container labeling now looks like it works, re-enable the whole build again" />
-    <MESSAGE value="add label for version to image" />
-    <MESSAGE value="add version label build arg" />
-    <MESSAGE value="first support for prometheus, counting submitted samples" />
-    <MESSAGE value="add prometheus_client to requirements for docker image" />
-    <MESSAGE value="fix so tagging correctly the  docker image" />
-    <MESSAGE value="add some more instrumentation" />
-    <MESSAGE value="include job, and topic as label for submitted samples" />
-    <MESSAGE value="remove job as a label, seems already there from yml file" />
-    <MESSAGE value="add instrumentation for # samples currently held" />
-    <MESSAGE value="testing manually change manifest for docker bug" />
-    <MESSAGE value="docker images built wihtin CI should now be deployable on arm swarm" />
-    <MESSAGE value="try removing numby as a requirement" />
-    <MESSAGE value="push intermediate image for manifest manipulation" />
-    <MESSAGE value="add location as label for instrumentation measurements" />
-    <option name="LAST_COMMIT_MESSAGE" value="add location as label for instrumentation measurements" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -1007,7 +433,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/monitor-mqtt.py</url>
-          <line>145</line>
+          <line>149</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
@@ -1383,21 +809,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="18" column="132" selection-start-line="18" selection-start-column="132" selection-end-line="18" selection-end-column="132" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
           <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/monitor-mqtt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

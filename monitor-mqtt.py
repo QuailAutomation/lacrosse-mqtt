@@ -87,7 +87,11 @@ sensorConfig = config['sensors']
 for key in sensorConfig:
     log.info("watching for sensor with id: %s" % key)
     topic = sensorConfig[key]['mqtt-topic']
-    location = sensorConfig[key]['location']
+    try:
+        location = sensorConfig[key]['location']
+    except KeyError:
+        location = topic
+
     log.info('Topic: %s' % topic)
     min = sensorConfig[key]['valid-range']['min']
     device_id_to_temp_sensor_map[key] = TempSensor(key,location,sensorConfig[key]['valid-range']['min'], sensorConfig[key]['valid-range']['max'])
