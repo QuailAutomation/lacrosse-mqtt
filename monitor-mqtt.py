@@ -9,6 +9,11 @@ import thread
 from flask import Flask, jsonify, Response
 from prometheus_client import Summary, Counter, Gauge, generate_latest
 from sensors import TempSensor
+try:
+    import graypy
+except ImportError:
+    pass
+
 
 
 app = Flask(__name__)
@@ -24,18 +29,6 @@ MQTT_EXCEPTIONS = Counter('lacrosse_mqtt_submit_exceptions_total',
 CURRENT_NUMBER_SAMPLES = Gauge('lacrosse_samples_current_number', 'Current number samples for averaging', ['sensor_key', 'type','location'])
 
 
-#some optional logging choices
-try:
-    from logentries import LogentriesHandler
-except ImportError:
-    pass
-
-try:
-    import graypy
-except ImportError:
-    pass
-
-
 config_file = os.getenv('SENSORCONFIGFILE', './sensors.json')
 with open(config_file) as json_file:
     config = json.load(json_file)
@@ -46,24 +39,12 @@ mosquitto_url = config['mqtt-url']
 log = logging.getLogger()
 
 try:
-    logentries_key = config['log-entries-key']
-except KeyError:
-    logentries_key = None
-
-try:
     gelf_url = config['gelf-url']
 except KeyError:
     gelf_url = None
 
 # if we have log configuration for log servers, add that, otherwise let's use basic loggin
 isLogConfigInfo = False
-
-if logentries_key is not None:
-    try:
-        log.addHandler(LogentriesHandler(logentries_key))
-        isLogConfigInfo = True
-    except NameError:
-        pass
 
 if gelf_url is not None:
     handler = graypy.GELFHandler(gelf_url, 12201, localname='lacrosse-processing', facility="maui")
