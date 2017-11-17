@@ -21,8 +21,8 @@ app = Flask(__name__)
 # instrumentation
 CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
 SENSOR_SAMPLES = Counter('lacrosse_samples_submitted', 'Number of samples processed', ['sensor_key','topic','location'])
-INVALID_SENSOR_SAMPLES = Counter('lacrosse_samples_invalid_range_submitted', 'Number unknown key samples processed', ['sensor_key','topic'])
-INVALID_SENSOR_KEY_SAMPLES = Counter('lacrosse_samples_invalid_key_submitted', 'Number unknown key samples processed', ['sensor_key'])
+INVALID_SENSOR_RANGE_COUNTER = Counter('lacrosse_samples_invalid_range_submitted', 'Number unknown key samples processed', ['sensor_key','topic'])
+INVALID_SENSOR_KEY_COUNTER = Counter('lacrosse_samples_invalid_key_submitted', 'Number unknown key samples processed', ['sensor_key'])
 MQTT_SUBMIT_DURATION = Summary('lacrosse_mqtt_submit_duration',
                            'Latency of submitting to mqtt')
 MQTT_EXCEPTIONS = Counter('lacrosse_mqtt_submit_exceptions_total',
@@ -183,7 +183,7 @@ def on_message(client, userdata, msg):
                 submit_sample(sensor, humidity, topic, 'humidity')
                 CURRENT_NUMBER_SAMPLES.labels(sensor_key=key, type='humidity', location=sensor.location).set(sensor.number_samples())
         else:
-            INVALID_SENSOR_KEY_SAMPLES.labels(sensor_key=key).inc()
+            INVALID_SENSOR_KEY_COUNTER.labels(sensor_key=key).inc()
 class SetEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, TempSensor):
