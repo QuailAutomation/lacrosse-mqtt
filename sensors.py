@@ -42,10 +42,10 @@ class TempSensor:
     def submit_sample(self, temperature):
         log.debug('submit sample called with: ' + str(temperature))
         # check if within 1 degree of sma, if it exists
-        mostRecentAvg = self.average()
-        log.debug('most recent sma: ' + str(mostRecentAvg))
-        if mostRecentAvg is not None:
-            if abs(temperature - mostRecentAvg) < self.max_allowable_difference_from_average:
+        most_recent_average = self.average()
+        log.debug('most recent sma: ' + str(most_recent_average))
+        if most_recent_average is not None:
+            if abs(temperature - most_recent_average) < self.max_allowable_difference_from_average:
                 self.last_10_readings.append(temperature)
                 self.current_number_sample_rejections = 0
                 log.debug('Submitted sample')
@@ -57,7 +57,7 @@ class TempSensor:
                     self.current_number_sample_rejections += 1
                     log.warn(
                         'Did not accept sample.  id=%s ,value=%f , because it was too different than average=%f , max_allowable=%f elements=%s'
-                        % (str(id), temperature, mostRecentAvg, self.max_allowable_difference_from_average,
+                        % (str(id), temperature, most_recent_average, self.max_allowable_difference_from_average,
                            self.last_10_readings))
                 raise ValueError('Sample variance was greater allowable average')
         else:

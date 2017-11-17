@@ -21,7 +21,8 @@ app = Flask(__name__)
 # instrumentation
 CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
 SENSOR_SAMPLES = Counter('lacrosse_samples_submitted', 'Number of samples processed', ['sensor_key','topic','location'])
-INVALID_SENSOR_SAMPLES = Counter('lacrosse_samples_invalid_submitted', 'Number unknown key samples processed', ['sensor_key','topic'])
+INVALID_SENSOR_SAMPLES = Counter('lacrosse_samples_invalid_range_submitted', 'Number unknown key samples processed', ['sensor_key','topic'])
+INVALID_SENSOR_KEY_SAMPLES = Counter('lacrosse_samples_invalid_key_submitted', 'Number unknown key samples processed', ['sensor_key'])
 MQTT_SUBMIT_DURATION = Summary('lacrosse_mqtt_submit_duration',
                            'Latency of submitting to mqtt')
 MQTT_EXCEPTIONS = Counter('lacrosse_mqtt_submit_exceptions_total',
@@ -146,14 +147,15 @@ def submit_sample(sensor, sample_value, topic, type):
                 write_to_mqtt(topic + type, round(sma,1))
             elif type == 'humidity':
                 write_to_mqtt(topic + type, round(sma,0))
-            # let's remove 5 oldest readings so we can build deque back to 10
             else:
                 log.warn("Received unexpected sample type: %s" % type)
+
+            # let's remove 5 oldest readings so we can build deque back to 10
             sensor.remove(5)
         else:
             log.debug('Did not write sma because is None')
     except ValueError:
-        log.info('Invalid reading. Sample ignored. value=%f' % sample_value)
+        log.info('Invalid reading. Sample ignored. sensor: {}, value={}'.format(sensor,sample_value))
 
 
 def on_message(client, userdata, msg):
@@ -181,7 +183,7 @@ def on_message(client, userdata, msg):
                 submit_sample(sensor, humidity, topic, 'humidity')
                 CURRENT_NUMBER_SAMPLES.labels(sensor_key=key, type='humidity', location=sensor.location).set(sensor.number_samples())
         else:
-            INVALID_SENSOR_SAMPLES.labels(**label_dict).inc()
+            INVALID_SENSOR_KEY_SAMPLES.labels(sensor_key=key).inc()
 class SetEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, TempSensor):
@@ -209,7 +211,7 @@ def metrics():
     return Response(generate_latest(), mimetype=CONTENT_TYPE_LATEST)
 
 
-client = mqtt.Client()
+client = mqtt.Client(client_id="lacrosse-mqtt")
 client.on_connect = on_connect
 client.on_message = on_message
 log.info('Connecting to mqtt: %s' % mosquitto_url)
