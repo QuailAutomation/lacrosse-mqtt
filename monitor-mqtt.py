@@ -128,7 +128,7 @@ def write_to_mqtt(topic, value):
     log.info('Writing to topic: %s, val: %s' % (topic, str(value)))
     try:
         startTime = time.time()
-       # client.publish(topic, str(value))
+        client.publish(topic, str(value))
         MQTT_SUBMIT_DURATION.observe(time.time() - startTime)
     except socket.error:
         log.warn('Could not connect to mosquitto')
