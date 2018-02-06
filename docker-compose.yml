@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  lacrosse:
+    image: 'craigham/rpi-lacrosse-mqtt'
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      SENSORCONFIGFILE: /lacrosse-sensors.json
+    configs:
+      - lacrosse-sensors.json
+#    deploy:
+#      placement:
+#        constraints:
+#          - arch.arm == 1
+configs:
+  lacrosse-sensors.json:
+    external: true
