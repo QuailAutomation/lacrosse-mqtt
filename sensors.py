@@ -13,13 +13,7 @@ log = logging.getLogger(__name__)
 
 
 class TempSensor:
-    max_allowable_difference_from_average = 4
-    # when we start accepting samples we are vulnerable to accepting a bad value early, which will
-    # result in not accepting more appropriate values later because of an inaccurate early reading
-    # so, if we reject 4 samples consecutively, we will flush the readings and start again
-    current_number_sample_rejections = 0
-
-    def __init__(self, id, location, min, max,max_difference_from_average=4):
+    def __init__(self, id, location="unspecified", min=0, max=50,max_difference_from_average=4):
         self.id = id
         self.location = location
         self.min = min
@@ -27,6 +21,11 @@ class TempSensor:
         log.info('Sensor created: Min: %s, Max: %s' % (min, max))
         self.last_10_readings = deque(maxlen=10)
         self.max_allowable_difference_from_average = max_difference_from_average
+
+        # when we start accepting samples we are vulnerable to accepting a bad value early, which will
+        # result in not accepting more appropriate values later because of an inaccurate early reading
+        # so, if we reject 4 samples consecutively, we will flush the readings and start again
+        self.current_number_sample_rejections = 0
 
     def average(self):
         sum_samples = sum(self.last_10_readings)

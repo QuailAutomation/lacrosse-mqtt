@@ -132,7 +132,7 @@
         <entry file="file://$PROJECT_DIR$/shippable.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="152">
-              <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -559,7 +559,14 @@
       <option name="project" value="LOCAL" />
       <updated>1535992373067</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="now will build all branches, just not push docker image unless master">
+      <created>1535994662502</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1535994662502</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -627,7 +634,8 @@
     <MESSAGE value="first cut at creating object for montioring mqtt" />
     <MESSAGE value="clean up around oo.  need to test now" />
     <MESSAGE value="enable unit testing in shippable" />
-    <option name="LAST_COMMIT_MESSAGE" value="enable unit testing in shippable" />
+    <MESSAGE value="now will build all branches, just not push docker image unless master" />
+    <option name="LAST_COMMIT_MESSAGE" value="now will build all branches, just not push docker image unless master" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -985,7 +993,7 @@
     <entry file="file://$PROJECT_DIR$/shippable.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding />
         </state>
       </provider>
