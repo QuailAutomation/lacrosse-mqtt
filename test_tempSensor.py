@@ -6,6 +6,7 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
+
 class TestTempSensor(TestCase):
 
     def test_average(self):
