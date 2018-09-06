@@ -22,7 +22,7 @@ build:
     - "pip install -r requirements.txt"
     #Create folders for test and code coverage
     - mkdir -p shippable/testresults
-    - cd docker-lacrosse-mqtt
+    - cd /root/src/bitbucket.org/quailholdings/docker-lacrosse-mqtt
     - nosetests test_tempSensor.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
   # http://docs.shippable.com/ci/shippableyml/#post_ci
   on_success:

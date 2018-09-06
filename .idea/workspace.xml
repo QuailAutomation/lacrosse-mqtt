@@ -133,7 +133,7 @@
         <entry file="file://$PROJECT_DIR$/shippable.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="456">
-              <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+              <caret line="24" column="67" selection-start-line="24" selection-start-column="67" selection-end-line="24" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -589,7 +589,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536251395841</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="try cd'ing to project directory">
+      <created>1536251705828</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1536251705828</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -613,7 +620,7 @@
     <frame x="-567" y="-1390" width="2215" height="1158" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16152784" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16152784" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32909784" sideWeight="0.4914163" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32909784" sideWeight="0.49713877" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20075047" sideWeight="0.55085135" order="8" side_tool="true" content_ui="tabs" />
@@ -659,7 +666,8 @@
     <MESSAGE value="enable unit testing in shippable" />
     <MESSAGE value="now will build all branches, just not push docker image unless master" />
     <MESSAGE value="move docker image build to on_success" />
-    <option name="LAST_COMMIT_MESSAGE" value="move docker image build to on_success" />
+    <MESSAGE value="try cd'ing to project directory" />
+    <option name="LAST_COMMIT_MESSAGE" value="try cd'ing to project directory" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1021,7 +1029,7 @@
     <entry file="file://$PROJECT_DIR$/shippable.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
-          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+          <caret line="24" column="67" selection-start-line="24" selection-start-column="67" selection-end-line="24" selection-end-column="67" />
           <folding />
         </state>
       </provider>
