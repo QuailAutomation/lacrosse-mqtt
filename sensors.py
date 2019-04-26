@@ -153,6 +153,7 @@ class MqttMonitor:
                 log.debug("we can accept, elapsed time: %f" % elapsed_time.total_seconds())
             else:
                 return_value = False
+                log.debug("Did not accept, elapsed time: {}".format(elapsed_time.total_seconds()))
         except KeyError:
             log.info('Key not found in last reading: ' + key)
 

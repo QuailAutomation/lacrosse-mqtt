@@ -84,4 +84,7 @@ def get_sensors_humidity():
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
-mqtt_monitor.loop_forever()
+try:
+    mqtt_monitor.loop_forever()
+except:
+    log.exception("Exception caught in forever loop")
