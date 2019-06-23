@@ -100,12 +100,13 @@ class MqttMonitor:
 
     def __init__(self,sensor_config, mqtt_broker_url, mqtt_broker_port = 1883,
                  broker_client_id="lacrosse-mqtt"):
-        self.client = mqtt.Client(client_id=broker_client_id)
+        self.client = mqtt.Client(client_id=broker_client_id + "craig")
         self.mqtt_broker_url = mqtt_broker_url
         self.mqtt_broker_port = 1883
 
         self.client.on_connect = self.on_connect
         self.client.on_message = self.on_message
+        self.client.on_disconnect = self.on_disconnect
 
         # for each id, let's create a dict with the id, and a temp sensor class
         self.device_id_to_temp_sensor_map = {}
@@ -134,8 +135,11 @@ class MqttMonitor:
                                                                max_difference_from_average=15)
             self.deviceIdtoTopic[key] = topic
 
+    def on_disconnect(self,client, userdata, rc):
+        log.debug("disconnected with rtn code [%d]" % (rc))
+
     def on_connect(self, client, userdata, flags, rc):
-        print("Connected with result code " + str(rc))
+        log.debug("Connected with result code " + str(rc))
         # Subscribing in on_connect() means that if we lose the connection and
         # reconnect then subscriptions will be renewed.
         client.subscribe("private/jeelink/+")
