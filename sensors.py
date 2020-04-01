@@ -207,33 +207,36 @@ class MqttMonitor:
             log.info('Invalid reading. Sample ignored. sensor: {}, value={}'.format(sensor, sample_value))
 
     def on_message(self, client, userdata, msg):
-        payload = msg.payload
-        log.debug("payload: %s" % payload)
-        msgElements = payload.split(':')
-        key = msgElements[1]
-        log.debug('key: %s' % key)
-        if self.is_ok_to_accept_reading(key):
-            temp = float(msgElements[2])
-            log.debug("temp: '%f'" % temp)
-            label_dict = {"sensor_key": key, "topic": msg.topic}
-            sensor = self.get_sensor(key, 'temperature')
-            if sensor is not None:
-                label_dict['location'] = sensor.location
-                MqttMonitor.SENSOR_SAMPLES.labels(**label_dict).inc()
-                topic = self.deviceIdtoTopic[key]
-                self.submit_sample(sensor, temp, topic, 'temperature')
-                MqttMonitor.CURRENT_NUMBER_SAMPLES.labels(sensor_key=key, type='temperature', location=sensor.location).set(
-                    sensor.number_samples())
-                log.debug('Submitted temperature reading. key=%s value=%f' % (key, temp))
-                humidity = float(msgElements[3])
-                sensor = self.get_sensor(key, 'humidity')
-                if humidity < 99:
-                    log.debug("humidity: '%f'" % humidity)
-                    self.submit_sample(sensor, humidity, topic, 'humidity')
-                    MqttMonitor.CURRENT_NUMBER_SAMPLES.labels(sensor_key=key, type='humidity', location=sensor.location).set(
+        try:
+            payload = str(msg.payload)
+            log.debug("payload: %s" % payload)
+            msgElements = payload.split(':')
+            key = msgElements[1]
+            log.debug('key: %s' % key)
+            if self.is_ok_to_accept_reading(key):
+                temp = float(msgElements[2])
+                log.debug("temp: '%f'" % temp)
+                label_dict = {"sensor_key": key, "topic": msg.topic}
+                sensor = self.get_sensor(key, 'temperature')
+                if sensor is not None:
+                    label_dict['location'] = sensor.location
+                    MqttMonitor.SENSOR_SAMPLES.labels(**label_dict).inc()
+                    topic = self.deviceIdtoTopic[key]
+                    self.submit_sample(sensor, temp, topic, 'temperature')
+                    MqttMonitor.CURRENT_NUMBER_SAMPLES.labels(sensor_key=key, type='temperature', location=sensor.location).set(
                         sensor.number_samples())
-            else:
-                MqttMonitor.INVALID_SENSOR_KEY_COUNTER.labels(sensor_key=key).inc()
+                    log.debug('Submitted temperature reading. key=%s value=%f' % (key, temp))
+                    humidity = float(msgElements[3])
+                    sensor = self.get_sensor(key, 'humidity')
+                    if humidity < 99:
+                        log.debug("humidity: '%f'" % humidity)
+                        self.submit_sample(sensor, humidity, topic, 'humidity')
+                        MqttMonitor.CURRENT_NUMBER_SAMPLES.labels(sensor_key=key, type='humidity', location=sensor.location).set(
+                            sensor.number_samples())
+                else:
+                    MqttMonitor.INVALID_SENSOR_KEY_COUNTER.labels(sensor_key=key).inc()
+        except Exception as e:
+            log.exception(e)
 
     def loop_forever(self):
         while True:
