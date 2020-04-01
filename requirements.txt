@@ -1,5 +1,5 @@
 pyserial==3.4
-paho-mqtt--1.5.0
+paho-mqtt==1.5.0
 graypy==2.1.*
 flask==1.1.1
 prometheus_client==0.7.*
