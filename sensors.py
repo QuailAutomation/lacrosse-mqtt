@@ -208,7 +208,7 @@ class MqttMonitor:
 
     def on_message(self, client, userdata, msg):
         try:
-            payload = str(msg.payload)
+            payload = str(msg.payload).replace("'", "")
             log.debug("payload: %s" % payload)
             msgElements = payload.split(':')
             key = msgElements[1]

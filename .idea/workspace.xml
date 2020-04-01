@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="38ec2edd-173f-43c1-998b-835f7e8cb0eb" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sensors.py" beforeDir="false" afterPath="$PROJECT_DIR$/sensors.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -343,8 +342,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.homie-test" />
       <item itemvalue="Python.monitor-mqtt" />
+      <item itemvalue="Python.homie-test" />
       <item itemvalue="Python tests.Unittests in TestTempSensor" />
     </list>
     <recent_temporary>
@@ -532,7 +531,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561251166349</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="explicitly cast payload to string, log exceptions">
+      <created>1585781300595</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1585781300595</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -563,49 +569,62 @@
     <MESSAGE value="add pip install back" />
     <MESSAGE value="added try except around main forever loop to try and catch when service is dieing." />
     <MESSAGE value="added on_disconnect method, added util for testing homie support" />
-    <option name="LAST_COMMIT_MESSAGE" value="added on_disconnect method, added util for testing homie support" />
+    <MESSAGE value="explicitly cast payload to string, log exceptions" />
+    <option name="LAST_COMMIT_MESSAGE" value="explicitly cast payload to string, log exceptions" />
   </component>
   <component name="WindowStateProjectService">
     <state x="123" y="-1057" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585763402264">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
     <state x="123" y="-1057" key="#com.intellij.execution.impl.EditConfigurationsDialog/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585763402264" />
+    <state x="231" y="-1117" key="CommitChangelistDialog2" timestamp="1585781299834">
+      <screen x="-621" y="-1440" width="2560" height="1440" />
+    </state>
+    <state x="231" y="-1117" key="CommitChangelistDialog2/-621.-1440.2560.1440/0.23.1440.877@-621.-1440.2560.1440" timestamp="1585781299834" />
     <state x="413" y="-949" key="EnvironmentVariablesDialog" timestamp="1585763400167">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
     <state x="413" y="-949" key="EnvironmentVariablesDialog/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585763400167" />
-    <state width="2539" height="459" key="GridCell.Tab.0.bottom" timestamp="1585765370443">
+    <state width="2539" height="459" key="GridCell.Tab.0.bottom" timestamp="1585782458609">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="2539" height="459" key="GridCell.Tab.0.bottom/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370443" />
-    <state width="2539" height="459" key="GridCell.Tab.0.center" timestamp="1585765370434">
+    <state width="2539" height="459" key="GridCell.Tab.0.bottom/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585782458609" />
+    <state width="2539" height="459" key="GridCell.Tab.0.bottom/-621.-1440.2560.1440/0.23.1440.877@-621.-1440.2560.1440" timestamp="1585781262665" />
+    <state width="2539" height="459" key="GridCell.Tab.0.center" timestamp="1585782458606">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="2539" height="459" key="GridCell.Tab.0.center/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370434" />
-    <state width="2539" height="459" key="GridCell.Tab.0.left" timestamp="1585765370427">
+    <state width="2539" height="459" key="GridCell.Tab.0.center/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585782458606" />
+    <state width="2539" height="459" key="GridCell.Tab.0.center/-621.-1440.2560.1440/0.23.1440.877@-621.-1440.2560.1440" timestamp="1585781262664" />
+    <state width="2539" height="459" key="GridCell.Tab.0.left" timestamp="1585782458605">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="2539" height="459" key="GridCell.Tab.0.left/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370427" />
-    <state width="2539" height="459" key="GridCell.Tab.0.right" timestamp="1585765370439">
+    <state width="2539" height="459" key="GridCell.Tab.0.left/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585782458605" />
+    <state width="2539" height="459" key="GridCell.Tab.0.left/-621.-1440.2560.1440/0.23.1440.877@-621.-1440.2560.1440" timestamp="1585781262663" />
+    <state width="2539" height="459" key="GridCell.Tab.0.right" timestamp="1585782458607">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="2539" height="459" key="GridCell.Tab.0.right/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370439" />
-    <state width="2539" height="459" key="GridCell.Tab.1.bottom" timestamp="1585765370420">
+    <state width="2539" height="459" key="GridCell.Tab.0.right/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585782458607" />
+    <state width="2539" height="459" key="GridCell.Tab.0.right/-621.-1440.2560.1440/0.23.1440.877@-621.-1440.2560.1440" timestamp="1585781262664" />
+    <state width="2539" height="459" key="GridCell.Tab.1.bottom" timestamp="1585782453922">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="2539" height="459" key="GridCell.Tab.1.bottom/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370420" />
-    <state width="2539" height="459" key="GridCell.Tab.1.center" timestamp="1585765370408">
+    <state width="2539" height="459" key="GridCell.Tab.1.bottom/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585782453922" />
+    <state width="2539" height="459" key="GridCell.Tab.1.bottom/-621.-1440.2560.1440/0.23.1440.877@-621.-1440.2560.1440" timestamp="1585781262662" />
+    <state width="2539" height="459" key="GridCell.Tab.1.center" timestamp="1585782453920">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="2539" height="459" key="GridCell.Tab.1.center/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370408" />
-    <state width="2539" height="459" key="GridCell.Tab.1.left" timestamp="1585765370401">
+    <state width="2539" height="459" key="GridCell.Tab.1.center/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585782453920" />
+    <state width="2539" height="459" key="GridCell.Tab.1.center/-621.-1440.2560.1440/0.23.1440.877@-621.-1440.2560.1440" timestamp="1585781262661" />
+    <state width="2539" height="459" key="GridCell.Tab.1.left" timestamp="1585782453920">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="2539" height="459" key="GridCell.Tab.1.left/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370401" />
-    <state width="2539" height="459" key="GridCell.Tab.1.right" timestamp="1585765370413">
+    <state width="2539" height="459" key="GridCell.Tab.1.left/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585782453920" />
+    <state width="2539" height="459" key="GridCell.Tab.1.left/-621.-1440.2560.1440/0.23.1440.877@-621.-1440.2560.1440" timestamp="1585781262660" />
+    <state width="2539" height="459" key="GridCell.Tab.1.right" timestamp="1585782453921">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="2539" height="459" key="GridCell.Tab.1.right/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370413" />
+    <state width="2539" height="459" key="GridCell.Tab.1.right/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585782453921" />
+    <state width="2539" height="459" key="GridCell.Tab.1.right/-621.-1440.2560.1440/0.23.1440.877@-621.-1440.2560.1440" timestamp="1585781262662" />
     <state x="405" y="-1078" key="SettingsEditor" timestamp="1585762684536">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
@@ -621,9 +640,9 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/monitor-mqtt.py</url>
-          <line>20</line>
-          <option name="timeStamp" value="39" />
+          <url>file://$PROJECT_DIR$/sensors.py</url>
+          <line>210</line>
+          <option name="timeStamp" value="40" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
