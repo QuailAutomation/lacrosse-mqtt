@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38ec2edd-173f-43c1-998b-835f7e8cb0eb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/docker-lacrosse-mqtt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/docker-lacrosse-mqtt.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor-mqtt.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor-mqtt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sensors-test.json" beforeDir="false" afterPath="$PROJECT_DIR$/sensors-test.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sensors.py" beforeDir="false" afterPath="$PROJECT_DIR$/sensors.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -360,6 +352,18 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -528,15 +532,6 @@
     <option name="localTasksCounter" value="23" />
     <servers />
   </component>
-  <component name="TodoView" selected-index="4">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
       <collection />
@@ -576,38 +571,38 @@
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
     <state x="413" y="-949" key="EnvironmentVariablesDialog/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585763400167" />
-    <state width="1501" height="459" key="GridCell.Tab.0.bottom" timestamp="1585763477177">
+    <state width="2539" height="459" key="GridCell.Tab.0.bottom" timestamp="1585765370443">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1501" height="459" key="GridCell.Tab.0.bottom/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585763477177" />
-    <state width="1501" height="459" key="GridCell.Tab.0.center" timestamp="1585763477164">
+    <state width="2539" height="459" key="GridCell.Tab.0.bottom/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370443" />
+    <state width="2539" height="459" key="GridCell.Tab.0.center" timestamp="1585765370434">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1501" height="459" key="GridCell.Tab.0.center/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585763477164" />
-    <state width="1501" height="459" key="GridCell.Tab.0.left" timestamp="1585763477160">
+    <state width="2539" height="459" key="GridCell.Tab.0.center/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370434" />
+    <state width="2539" height="459" key="GridCell.Tab.0.left" timestamp="1585765370427">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1501" height="459" key="GridCell.Tab.0.left/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585763477160" />
-    <state width="1501" height="459" key="GridCell.Tab.0.right" timestamp="1585763477168">
+    <state width="2539" height="459" key="GridCell.Tab.0.left/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370427" />
+    <state width="2539" height="459" key="GridCell.Tab.0.right" timestamp="1585765370439">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1501" height="459" key="GridCell.Tab.0.right/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585763477168" />
-    <state width="1501" height="459" key="GridCell.Tab.1.bottom" timestamp="1585763527901">
+    <state width="2539" height="459" key="GridCell.Tab.0.right/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370439" />
+    <state width="2539" height="459" key="GridCell.Tab.1.bottom" timestamp="1585765370420">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1501" height="459" key="GridCell.Tab.1.bottom/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585763527901" />
-    <state width="1501" height="459" key="GridCell.Tab.1.center" timestamp="1585763527899">
+    <state width="2539" height="459" key="GridCell.Tab.1.bottom/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370420" />
+    <state width="2539" height="459" key="GridCell.Tab.1.center" timestamp="1585765370408">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1501" height="459" key="GridCell.Tab.1.center/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585763527899" />
-    <state width="1501" height="459" key="GridCell.Tab.1.left" timestamp="1585763527898">
+    <state width="2539" height="459" key="GridCell.Tab.1.center/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370408" />
+    <state width="2539" height="459" key="GridCell.Tab.1.left" timestamp="1585765370401">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1501" height="459" key="GridCell.Tab.1.left/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585763527898" />
-    <state width="1501" height="459" key="GridCell.Tab.1.right" timestamp="1585763527900">
+    <state width="2539" height="459" key="GridCell.Tab.1.left/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370401" />
+    <state width="2539" height="459" key="GridCell.Tab.1.right" timestamp="1585765370413">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1501" height="459" key="GridCell.Tab.1.right/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585763527900" />
+    <state width="2539" height="459" key="GridCell.Tab.1.right/-621.-1440.2560.1440/0.0.1440.900@-621.-1440.2560.1440" timestamp="1585765370413" />
     <state x="405" y="-1078" key="SettingsEditor" timestamp="1585762684536">
       <screen x="-621" y="-1440" width="2560" height="1440" />
     </state>

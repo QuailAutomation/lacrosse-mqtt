@@ -1,6 +1,6 @@
 #FROM python
 
-FROM arm32v7/python:3.7-buster
+FROM python/python:3.7-buster
 MAINTAINER craig
 
 ARG git_commit
