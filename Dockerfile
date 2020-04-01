@@ -1,6 +1,6 @@
 #FROM python
 
-FROM hypriot/rpi-python:2.7.3
+FROM arm32v7/python:3.7-buster
 MAINTAINER craig
 
 ARG git_commit
@@ -13,9 +13,6 @@ RUN apt-get update && \
 # Install Python requirements
 ADD requirements.txt /tmp/requirements.txt
 RUN pip install --index-url=https://pypi.python.org/simple/ -r /tmp/requirements.txt
-
-#ENV TZ=America/Los_Angeles
-#RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Create runtime user
 RUN useradd pi

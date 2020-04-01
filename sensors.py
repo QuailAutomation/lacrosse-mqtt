@@ -136,10 +136,10 @@ class MqttMonitor:
             self.deviceIdtoTopic[key] = topic
 
     def on_disconnect(self,client, userdata, rc):
-        log.debug("disconnected with rtn code [%d]" % (rc))
+        log.warn("disconnected with rtn code [%d]" % (rc))
 
     def on_connect(self, client, userdata, flags, rc):
-        log.debug("Connected with result code " + str(rc))
+        log.info            ("Connected with result code " + str(rc))
         # Subscribing in on_connect() means that if we lose the connection and
         # reconnect then subscriptions will be renewed.
         client.subscribe("private/jeelink/+")
@@ -236,6 +236,12 @@ class MqttMonitor:
                 MqttMonitor.INVALID_SENSOR_KEY_COUNTER.labels(sensor_key=key).inc()
 
     def loop_forever(self):
-        log.info('Connecting to mqtt: %s' % self.mqtt_broker_url)
-        self.client.connect(self.mqtt_broker_url, self.mqtt_broker_port, 60)
-        self.client.loop_forever()
+        while True:
+            try:
+                log.info('Connecting to mqtt: %s' % self.mqtt_broker_url)
+                self.client.connect(self.mqtt_broker_url, self.mqtt_broker_port, 60)
+                self.client.loop_forever()
+            except Exception:
+                log.warn('Could not connect to mqtt, retrying in 1 minute(s)')
+                time.sleep(60)
+

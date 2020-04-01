@@ -1,5 +1,6 @@
 {
 	"mqtt-url": "192.168.1.20",
+	"gelf-url": "192.168.1.20",
 	"log-entries-key": "<put your log entries key here>",
 	"log-level": "DEBUG",
 	"sensors": {

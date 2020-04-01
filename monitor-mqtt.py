@@ -2,7 +2,7 @@ import os
 import json
 import logging
 
-import thread
+import _thread as thread
 from flask import Flask, Response
 from prometheus_client import generate_latest
 from sensors import TempSensor, MqttMonitor
@@ -36,7 +36,8 @@ isLogConfigInfo = False
 
 #TODO should test setting the url, but not having graypy avail as lib
 if gelf_url is not None:
-    handler = graypy.GELFHandler(gelf_url, 12201, localname='lacrosse-processing', facility="maui")
+    logging_facility = os.getenv('LOGGING_FACILITY', 'lacrosse-default-facility')
+    handler = graypy.GELFUDPHandler(gelf_url, 12201, localname='lacrosse-processing', facility=logging_facility)
     log.addHandler(handler)
     isLogConfigInfo = True
 
@@ -57,6 +58,7 @@ class SetEncoder(json.JSONEncoder):
 
 def flask_thread():
      app.run(host='0.0.0.0')
+
 
 thread.start_new_thread(flask_thread,())
 
@@ -88,3 +90,5 @@ try:
     mqtt_monitor.loop_forever()
 except:
     log.exception("Exception caught in forever loop")
+
+log.info("Service has terminated")
