@@ -63,7 +63,7 @@ class TempSensor:
                     log.debug("Cleared last 10 readings because we've rejected too many samples")
                 else:
                     self.current_number_sample_rejections += 1
-                    log.warn(
+                    log.warning(
                         'Did not accept sample.  id=%s ,value=%f , because it was too different than average=%f , max_allowable=%f elements=%s'
                         % (str(id), temperature, most_recent_average, self.max_diff_from_average,
                            self.last_10_readings))
@@ -73,8 +73,9 @@ class TempSensor:
                 self.last_10_readings.append(temperature)
                 log.debug('Submitted sample')
             else:
-                log.warn('Sample out of range, sample value: %f, min: %f, max: %f'
-                         % (temperature, self.min, self.max))
+                log.warning(
+                            'Sample out of range, sample value: %f, min: %f, max: %f'
+                            % (temperature, self.min, self.max))
 
     def remove(self, count):
         for _ in range(count):
@@ -142,7 +143,7 @@ class MqttMonitor:
             self.deviceIdtoTopic[key] = topic
 
     def on_disconnect(self, client, userdata, rc):
-        log.warn("disconnected with rtn code [%d]" % (rc))
+        log.warning("disconnected with rtn code [%d]" % (rc))
 
     def on_connect(self, client, userdata, flags, rc):
         log.info("Connected with result code " + str(rc))
@@ -188,7 +189,7 @@ class MqttMonitor:
             self.client.publish(topic, str(value))
             MqttMonitor.MQTT_SUBMIT_DURATION.observe(time.time() - startTime)
         except socket.error:
-            log.warn('Could not connect to mosquitto')
+            log.warning('Could not connect to mosquitto')
             MqttMonitor.MQTT_EXCEPTIONS.inc()
             self.client.connect(self.mqtt_broker_url, self.mqtt_broker_port, keepalive=1000)
 
@@ -203,7 +204,7 @@ class MqttMonitor:
                 elif type == 'humidity':
                     self.write_to_mqtt(topic + type, round(sma, 0))
                 else:
-                    log.warn("Received unexpected sample type: %s" % type)
+                    log.warning("Received unexpected sample type: %s" % type)
 
                 # let's remove 5 oldest readings so we can build deque back to 10
                 sensor.remove(5)
@@ -251,5 +252,5 @@ class MqttMonitor:
                 self.client.connect(self.mqtt_broker_url, self.mqtt_broker_port, 60)
                 self.client.loop_forever()
             except Exception:
-                log.warn('Could not connect to mqtt, retrying in 1 minute(s)')
+                log.warning('Could not connect to mqtt, retrying in 1 minute(s)')
                 time.sleep(60)
