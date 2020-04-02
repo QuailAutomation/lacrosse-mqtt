@@ -6,25 +6,28 @@ import datetime
 import time
 import socket
 
-from prometheus_client import Summary, Counter, Gauge, generate_latest
+from prometheus_client import Summary, Counter, Gauge
 import paho.mqtt.client as mqtt
 
 log = logging.getLogger(__name__)
 
 
 class TempSensor:
-    def __init__(self, id, location="unspecified", min=0, max=50,max_difference_from_average=4):
+    def __init__(self, id, location="unspecified", min=0, max=50,
+                 max_difference_from_average=4):
         self.id = id
         self.location = location
         self.min = min
         self.max = max
         log.info('Sensor created: Min: %s, Max: %s' % (min, max))
         self.last_10_readings = deque(maxlen=10)
-        self.max_allowable_difference_from_average = max_difference_from_average
+        self.max_diff_from_average = max_difference_from_average
 
-        # when we start accepting samples we are vulnerable to accepting a bad value early, which will
-        # result in not accepting more appropriate values later because of an inaccurate early reading
-        # so, if we reject 4 samples consecutively, we will flush the readings and start again
+        # when we start accepting samples we are vulnerable to accepting a bad
+        # value early, which will result in not accepting more appropriate
+        # values later because of an inaccurate early reading
+        # so, if we reject 4 samples consecutively, we will flush the
+        # readings and start again
         self.current_number_sample_rejections = 0
 
     def average(self):
@@ -50,7 +53,7 @@ class TempSensor:
         most_recent_average = self.average()
         log.debug('most recent sma: ' + str(most_recent_average))
         if most_recent_average is not None:
-            if abs(temperature - most_recent_average) < self.max_allowable_difference_from_average:
+            if abs(temperature - most_recent_average) < self.max_diff_from_average:
                 self.last_10_readings.append(temperature)
                 self.current_number_sample_rejections = 0
                 log.debug('Submitted sample')
@@ -62,7 +65,7 @@ class TempSensor:
                     self.current_number_sample_rejections += 1
                     log.warn(
                         'Did not accept sample.  id=%s ,value=%f , because it was too different than average=%f , max_allowable=%f elements=%s'
-                        % (str(id), temperature, most_recent_average, self.max_allowable_difference_from_average,
+                        % (str(id), temperature, most_recent_average, self.max_diff_from_average,
                            self.last_10_readings))
                 raise ValueError('Sample variance was greater allowable average')
         else:
@@ -81,7 +84,9 @@ class TempSensor:
         return len(self.last_10_readings)
 
     def toJSON(self):
-        return {'id': self.id,'min':self.min,'max':self.max,'currentnumberrejections':self.current_number_sample_rejections,'readings':json.dumps(list(self.last_10_readings))}
+        return {'id': self.id, 'min': self.min, 'max': self.max,
+                'currentnumberrejections': self.current_number_sample_rejections,
+                'readings': json.dumps(list(self.last_10_readings))}
 
 
 class MqttMonitor:
@@ -98,7 +103,7 @@ class MqttMonitor:
     CURRENT_NUMBER_SAMPLES = Gauge('lacrosse_samples_current_number', 'Current number samples for averaging',
                                    ['sensor_key', 'type', 'location'])
 
-    def __init__(self,sensor_config, mqtt_broker_url, mqtt_broker_port = 1883,
+    def __init__(self, sensor_config, mqtt_broker_url, mqtt_broker_port=1883,
                  broker_client_id="lacrosse-mqtt"):
         self.client = mqtt.Client(client_id=broker_client_id + "craig")
         self.mqtt_broker_url = mqtt_broker_url
@@ -111,9 +116,10 @@ class MqttMonitor:
         # for each id, let's create a dict with the id, and a temp sensor class
         self.device_id_to_temp_sensor_map = {}
         self.device_id_to_humidity_sensor_map = {}
-        # this dict will keep track of last time we received a message for the sensors.
-        # more than 1 jeelink may pick up the reading from a temp sensor, so igore readings
-        # within a recent window...ie within 3 seconds
+        # this dict will keep track of last time we received a message for the
+        # sensors.  more than 1 jeelink may pick up the reading from a temp
+        # sensor, so igore readings within a recent window...ie within 3
+        # seconds
         self.device_id_to_last_reading_time = {}
 
         # this dict is sensors id, mqtt topic to write to
@@ -135,11 +141,11 @@ class MqttMonitor:
                                                                max_difference_from_average=15)
             self.deviceIdtoTopic[key] = topic
 
-    def on_disconnect(self,client, userdata, rc):
+    def on_disconnect(self, client, userdata, rc):
         log.warn("disconnected with rtn code [%d]" % (rc))
 
     def on_connect(self, client, userdata, flags, rc):
-        log.info            ("Connected with result code " + str(rc))
+        log.info("Connected with result code " + str(rc))
         # Subscribing in on_connect() means that if we lose the connection and
         # reconnect then subscriptions will be renewed.
         client.subscribe("private/jeelink/+")
@@ -247,4 +253,3 @@ class MqttMonitor:
             except Exception:
                 log.warn('Could not connect to mqtt, retrying in 1 minute(s)')
                 time.sleep(60)
-
