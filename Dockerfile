@@ -1,5 +1,4 @@
 FROM python:3.7-buster
-MAINTAINER craig
 
 ARG git_commit
 ARG version
