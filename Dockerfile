@@ -16,7 +16,8 @@ RUN pip install  -r /tmp/requirements.txt
 RUN useradd pi
 RUN mkdir -p /home/pi
 RUN usermod -a -G dialout pi
-ADD sensors.py /home/pi/sensors.py
+ADD app /home/pi/app
+ADD tests /home/pi/tests
 ADD monitor-mqtt.py /home/pi/monitor-mqtt.py
 RUN chown -R pi /home/pi/
 USER pi
