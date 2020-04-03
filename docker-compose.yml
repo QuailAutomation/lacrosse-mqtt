@@ -1,3 +1,4 @@
+# unmaintained, handled in anisble role now
 version: '3.3'
 services:
   lacrosse:
