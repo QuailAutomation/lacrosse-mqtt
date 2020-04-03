@@ -63,4 +63,10 @@ jobs:
           docker buildx build \
             --platform linux/amd64,linux/arm/v7 \
             --output "type=image,push=true" \
-            -t craigham/lacrosse:0.1.gh-action .
+            -t craigham/lacrosse:0.1.latest .
+
+      - 
+        name: Clear
+        if: always()
+        run: |
+          rm -f ${HOME}/.docker/config.json
